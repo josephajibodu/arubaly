@@ -2,7 +2,9 @@
 
 namespace App\Actions\Fortify;
 
+use App\Enums\Currency;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -20,7 +22,11 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255', Rule::unique(User::class)],
+            'phonenumber' => ['required', 'string', 'regex:/^(\+234|0)([789][01])\d{8}/', 'max:15'],
+            'whatsappnumber' => ['required', 'string', 'regex:/^(\+234|0)([789][01])\d{8}/', 'max:15'],
             'email' => [
                 'required',
                 'string',
@@ -29,12 +35,37 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
+
+            'bankname' => ['required', 'string', 'max:255'],
+            'accountname' => ['required', 'string', 'max:255'],
+            'accountnumber' => ['required', 'string', 'max:10']
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
+        $cleanedPhoneNumber = preg_replace('/^(?:\+234|234)/', '', $input['phonenumber']);
+        $cleanedWhatsAppNumber = preg_replace('/^(?:\+234|234)/', '', $input['whatsappnumber']);
+
+        $user = User::create([
+            'firstname' => $input['firstname'],
+            'lastname' => $input['lastname'],
+            'username' => $input['username'],
+            'phonenumber' => $cleanedPhoneNumber,
+            'whatsappnumber' => $cleanedWhatsAppNumber,
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+
+            'bankname' => $input['bankname'],
+            'accountname' => $input['accountname'],
+            'accountnumber' => $input['accountnumber'],
         ]);
+
+        // Create wallets for the user
+        foreach (Currency::cases() as $currency) {
+            Wallet::create([
+                'type' => $currency,
+                'user_id' => $user->id
+            ]);
+        }
+
+        return $user;
     }
 }

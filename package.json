@@ -19,6 +19,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
-        "feather-icons": "^4.29.1"
+        "feather-icons": "^4.29.1",
+        "nice-select2": "^2.1.0"
     }
 }

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title') - Cremir Mobile Data</title>
+    <title>@yield('title') - Arubaly</title>
 
     <!-- Config -->
     @vite('resources/js/config.js')
