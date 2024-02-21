@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="flex gap-2">
-                                    <button type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Convert AWG to USD</button>
+                                    <a href="{{ route('convert', ['from' => \App\Enums\Currency::AWG->value, 'to' => \App\Enums\Currency::USD->value]) }}" type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Convert AWG to USD</a>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
 
-                                <button type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Convert USD to Naira</button>
+                                <a href="{{ route('convert', ['from' => \App\Enums\Currency::USD->value, 'to' => \App\Enums\Currency::NGN->value]) }}" type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Convert USD to Naira</a>
                             </div>
 
                         </div>
