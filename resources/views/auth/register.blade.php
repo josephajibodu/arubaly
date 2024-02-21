@@ -6,6 +6,7 @@
         <div class="card overflow-hidden sm:rounded-md rounded-none">
             <form method="post" action="{{ route('register') }}" class="p-6">
                 @csrf
+
                 <a href="{{ route('landing') }}" class="block mb-8">
                     <img class="h-6 block dark:hidden" src="{{ asset('images/logo-dark.png') }}?v1" alt="dark logo">
                     <img class="h-6 hidden dark:block" src="{{ asset('images/logo-light.png') }}?v1" alt="light logo">
@@ -23,6 +24,12 @@
                         <input id="lastname" class="form-input" type="text" name="lastname" value="{{ old('lastname') }}">
                         @error('lastname')<small class="text-help">{{ $message }}</small>@enderror
                     </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-200 mb-2" for="username">User Name</label>
+                    <input id="username" class="form-input" type="username" name="username" value="{{ old('username') }}">
+                    @error('username')<small class="text-help">{{ $message }}</small>@enderror
                 </div>
 
                 <div class="mb-4">

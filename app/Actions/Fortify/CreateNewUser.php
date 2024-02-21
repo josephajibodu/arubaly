@@ -61,7 +61,7 @@ class CreateNewUser implements CreatesNewUsers
         // Create wallets for the user
         foreach (Currency::cases() as $currency) {
             Wallet::create([
-                'type' => $currency,
+                'currency' => $currency,
                 'user_id' => $user->id
             ]);
         }

@@ -19,9 +19,9 @@
                 @endif
 
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-200 mb-2" for="email">Email Address</label>
-                    <input id="email" name="email" value="{{ old('email') }}" class="form-input" type="email" placeholder="Enter your email" >
-                    @error('email')<small class="text-help">{{ $message }}</small>@enderror
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-200 mb-2" for="username">Username</label>
+                    <input id="username" name="username" value="{{ old('username') }}" class="form-input" type="username" placeholder="Enter your Username" >
+                    @error('username')<small class="text-help">{{ $message }}</small>@enderror
                 </div>
 
                 <div class="mb-4">
