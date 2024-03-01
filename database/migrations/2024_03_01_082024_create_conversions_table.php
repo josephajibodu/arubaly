@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('conversions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('transaction_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+
+            $table->unsignedBigInteger('rate');
+            $table->string('to_currency');
+            $table->unsignedBigInteger('to_amount');
+            $table->unsignedBigInteger('received_amount');
+            $table->unsignedBigInteger('exchange_fee');
+
             $table->timestamps();
         });
     }

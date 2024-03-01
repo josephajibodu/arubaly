@@ -11,9 +11,9 @@ enum Currency: string
     public function label(): string
     {
         return match ($this) {
-            self::NGN => "Naira",
-            self::AWG => "ARUBA FLORIN",
-            self::USD => "US Dollar",
+            self::NGN => 'Naira',
+            self::AWG => 'ARUBA FLORIN',
+            self::USD => 'US Dollar',
         };
     }
 

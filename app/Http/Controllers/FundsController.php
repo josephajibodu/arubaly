@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Currency;
-use Illuminate\Http\Request;
 
 class FundsController extends Controller
 {
@@ -14,7 +13,7 @@ class FundsController extends Controller
 
         return view('protected.convert', [
             'from' => $from,
-            'to' => $to
+            'to' => $to,
         ]);
     }
 }

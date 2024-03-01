@@ -13,11 +13,11 @@ class Wallet extends Model
 
     protected $fillable = [
         'currency',
-        'user_id'
+        'user_id',
     ];
 
     protected $casts = [
-        'currency' => Currency::class
+        'currency' => Currency::class,
     ];
 
     /**

@@ -36,12 +36,10 @@ class ConvertFunds extends Component
 
     public function updated($property)
     {
-//        dd($property);
+        //        dd($property);
         if ($property == 'amount') {
             $this->calculate();
-        }
-
-        else if ($property == 'amountReceived') {
+        } elseif ($property == 'amountReceived') {
             $this->calculateInverse();
         }
     }

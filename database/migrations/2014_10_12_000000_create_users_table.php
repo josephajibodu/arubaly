@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('phonenumber');
             $table->string('whatsappnumber');
 
-
             $table->string('bankname');
             $table->string('accountname');
             $table->string('accountnumber');

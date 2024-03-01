@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('swaps', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->nullOnDelete()->cascadeOnUpdate();
+            $table->foreignId('merchant_id')->constrained()->nullOnDelete()->cascadeOnUpdate();
+            // $table->string('from_currency');
+            // $table->unsignedBigInteger('from_amount');
+            // $table->string('to_currency');
+            // $table->unsignedBigInteger('to_amount');
+            $table->string('status');
             $table->timestamps();
         });
     }

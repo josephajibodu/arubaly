@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('amount');
+            $table->string('reference');
+            $table->text('description');
+            $table->string('status');
+            $table->string('currency');
+            $table->string('type')->comment('conversion, withdrawals, transfers, buy order');
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

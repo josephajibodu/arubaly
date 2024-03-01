@@ -13,6 +13,24 @@ return new class extends Migration
     {
         Schema::create('merchants', function (Blueprint $table) {
             $table->id();
+            $table->string('reference');
+
+            $table->string('rate');
+            $table->string('awg_balance');
+            $table->string('min_amount');
+            $table->string('max_amount');
+            $table->string('payment_type');
+
+            // for receiving payments
+            $table->string('bankname');
+            $table->string('accountname');
+            $table->string('accountnumber');
+
+            $table->string('terms');
+
+            $table->string('status');
+            $table->string('availability');
+
             $table->timestamps();
         });
     }

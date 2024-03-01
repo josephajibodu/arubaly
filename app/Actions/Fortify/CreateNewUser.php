@@ -38,7 +38,7 @@ class CreateNewUser implements CreatesNewUsers
 
             'bankname' => ['required', 'string', 'max:255'],
             'accountname' => ['required', 'string', 'max:255'],
-            'accountnumber' => ['required', 'string', 'max:10']
+            'accountnumber' => ['required', 'string', 'max:10'],
         ])->validate();
 
         $cleanedPhoneNumber = preg_replace('/^(?:\+234|234)/', '', $input['phonenumber']);
@@ -62,7 +62,7 @@ class CreateNewUser implements CreatesNewUsers
         foreach (Currency::cases() as $currency) {
             Wallet::create([
                 'currency' => $currency,
-                'user_id' => $user->id
+                'user_id' => $user->id,
             ]);
         }
 
