@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('merchant_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('transaction_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('merchant_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('rate');
-            $table->string('payable_amount');
+            $table->unsignedBigInteger('payable_amount');
             $table->string('status')->comment('pending, payment_sent, payment_confirmed, cancelled, completed');
             $table->timestamps();
         });

@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('withdrawals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('transaction_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+
             $table->string('bankname');
+            $table->string('accountname');
+            $table->string('accountnumber');
+
             $table->timestamps();
         });
     }

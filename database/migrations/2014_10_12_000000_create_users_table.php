@@ -23,6 +23,15 @@ return new class extends Migration
             $table->string('accountname');
             $table->string('accountnumber');
 
+            // merchant properties
+            $table->unsignedBigInteger('rate')->default(0);
+            $table->unsignedBigInteger('min_amount')->default(0);
+            $table->unsignedBigInteger('max_amount')->default(0);
+            $table->string('payment_type');
+
+            $table->string('terms')->nullable();
+            $table->string('availability')->nullable()->comment('soldout, available');
+
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

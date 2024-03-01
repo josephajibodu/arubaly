@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\MerchantAvailability;
+use App\Enums\TransactionType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,6 +53,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'availability' => MerchantAvailability::class
     ];
 
     /**
@@ -58,5 +62,25 @@ class User extends Authenticatable
     public function user(): HasMany
     {
         return $this->hasMany(Wallet::class);
+    }
+
+    public function withdrawals(): HasMany
+    {
+        return $this->hasMany(Transaction::class)->where('type', TransactionType::WITHDRAWAL);
+    }
+
+    public function conversions(): HasMany
+    {
+        return $this->hasMany(Transaction::class)->where('type', TransactionType::CONVERSION);
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Transaction::class)->where('type', TransactionType::ORDER);
+    }
+
+    public function transfers(): HasMany
+    {
+        return $this->hasMany(Transaction::class)->where('type', TransactionType::TRANSFER);
     }
 }
