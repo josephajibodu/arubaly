@@ -15,9 +15,9 @@ class ConvertFunds extends Component
 
     public float $rate = 0.00;
 
-    public float $amount;
+    public float $amount = 0;
 
-    public float $amountRecieved;
+    public float $amountReceived = 0;
 
     public function render()
     {
@@ -34,8 +34,35 @@ class ConvertFunds extends Component
         $this->rate = $this->getRate($from, $to, $isParallel);
     }
 
+    public function updated($property)
+    {
+//        dd($property);
+        if ($property == 'amount') {
+            $this->calculate();
+        }
+
+        else if ($property == 'amountReceived') {
+            $this->calculateInverse();
+        }
+    }
+
+    public function convert()
+    {
+
+    }
+
     private function getRate(Currency $from, Currency $to, bool $isParallel): int
     {
         return rand(100, 300);
+    }
+
+    public function calculate()
+    {
+        $this->amountReceived = $this->rate * $this->amount;
+    }
+
+    private function calculateInverse()
+    {
+        $this->amount = $this->amountReceived / $this->rate;
     }
 }

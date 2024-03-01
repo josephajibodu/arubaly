@@ -31,8 +31,9 @@
                     <img src="{{ asset($fromImageUrl) }}?v1" class="h-4 w-4 rounded-full"  alt="awg icon"/>
                 </div>
                 <input
+                    wire:model.live="amount"
                     id="amount-to-convert"
-                    type="text"
+                    type="number"
                     placeholder="0.00"
                     class="form-input ltr:rounded-l-none rtl:rounded-r-none"
                 />
@@ -50,7 +51,7 @@
                         <span class="flex items-center gap-1">
                             Amount we'll convert
                         </span>
-                <span class="text-gray-900 text-base">3.456</span>
+                <span class="text-gray-900">{{ $amount ?? 0 }}</span>
             </div>
             <div class="flex justify-between">
                         <span class="flex items-center gap-1">
@@ -62,7 +63,7 @@
                         <span class="flex items-center gap-1">
                             Today's rate
                         </span>
-                <span class="text-gray-900">x 3.456</span>
+                <span class="text-gray-900">x {{ $rate }}</span>
             </div>
         </div>
 
@@ -75,9 +76,11 @@
                     <img src="{{ asset($toImageUrl) }}?v1" class="h-4 w-4 rounded-full"  alt="awg icon"/>
                 </div>
                 <input
-                    id="amount-to-convert"
-                    type="text"
+                    wire:model="amountReceived"
+                    id="amount-to-receive"
+                    type="number"
                     placeholder="0.00"
+                    step="0.01"
                     class="form-input ltr:rounded-l-none rtl:rounded-r-none"
                 />
             </div>
