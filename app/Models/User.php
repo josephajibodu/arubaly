@@ -6,13 +6,16 @@ namespace App\Models;
 
 use App\Enums\MerchantAvailability;
 use App\Enums\TransactionType;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasName
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -82,5 +85,18 @@ class User extends Authenticatable
     public function transfers(): HasMany
     {
         return $this->hasMany(Transaction::class)->where('type', TransactionType::TRANSFER);
+    }
+
+    /**
+     * Filament
+     */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
+
+    public function getFilamentName(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 }

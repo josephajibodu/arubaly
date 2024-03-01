@@ -27,7 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('rate')->default(0);
             $table->unsignedBigInteger('min_amount')->default(0);
             $table->unsignedBigInteger('max_amount')->default(0);
-            $table->string('payment_type');
+            $table->string('payment_type')->nullable();
 
             $table->string('terms')->nullable();
             $table->string('availability')->nullable()->comment('soldout, available');
