@@ -2,8 +2,12 @@
 
 namespace App\Enums;
 
+use App\Enums\Traits\HasValues;
+
 enum MerchantAvailability: string
 {
+    use HasValues;
+
     case AVAILABLE = 'available';
     case SOLDOUT = 'sold-out';
 
@@ -19,4 +23,5 @@ enum MerchantAvailability: string
     {
         return $this->name;
     }
+
 }

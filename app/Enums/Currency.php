@@ -2,8 +2,12 @@
 
 namespace App\Enums;
 
+use App\Enums\Traits\HasValues;
+
 enum Currency: string
 {
+    use HasValues;
+
     case NGN = 'nigerian-naira';
     case AWG = 'arubaly-coin';
     case USD = 'us-dollar';
