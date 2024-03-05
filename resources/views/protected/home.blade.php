@@ -6,7 +6,7 @@
     <div class="grid lg:grid-cols-3 gap-6">
 
         <div class="lg:col-span-3 space-y-6">
-            <div class="card p-6">
+            <div class="card p-6 flex flex-col items-center">
                 <div data-fc-type="tab" class="flex flex-col items-center">
                     <nav class="flex w-fit space-x-2 justify-center p-1 bg-gray-300 rounded-xl" aria-label="Tabs" role="tablist">
                         <button type="button" class="fc-tab-active:bg-primary fc-tab-active:text-white py-3 px-4 inline-flex items-center gap-2 bg-transparent text-sm font-medium text-center text-gray-500 rounded-lg hover:text-primary dark:hover:text-gray-400 active" id="pills-with-brand-color-item-1" data-fc-target="#pills-with-brand-color-1" aria-controls="pills-with-brand-color-1" role="tab">
@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="flex gap-2">
-                                    <a href="{{ route('convert', ['from' => \App\Enums\Currency::AWG->value, 'to' => \App\Enums\Currency::USD->value]) }}" type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Convert AWG to USD</a>
+                                    <a href="{{ route('transaction.convert', ['from' => \App\Enums\Currency::AWG->value, 'to' => \App\Enums\Currency::USD->value]) }}" type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Convert AWG to USD</a>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
 
-                                <a href="{{ route('convert', ['from' => \App\Enums\Currency::USD->value, 'to' => \App\Enums\Currency::NGN->value]) }}" type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Convert USD to Naira</a>
+                                <a href="{{ route('transaction.convert', ['from' => \App\Enums\Currency::USD->value, 'to' => \App\Enums\Currency::NGN->value]) }}" type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Convert USD to Naira</a>
                             </div>
 
                         </div>
@@ -80,6 +80,46 @@
                                 <button type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Withdraw Funds</button>
                             </div>
 
+                        </div>
+                    </div>
+                </div>
+
+                {{--Exchange rate modal toggle --}}
+                <button class="btn bg-primary text-white" data-fc-type="modal" type="button">
+                    View Exchange Rates
+                </button>
+
+                {{--Exchange rate modal --}}
+                <div class="fixed top-0 left-0 z-50 transition-all duration-500 fc-modal hidden w-full h-full min-h-full items-center fc-modal-open:flex">
+                    <div class="fc-modal-open:opacity-100 duration-500 opacity-0 ease-out transition-[opacity] sm:max-w-lg sm:w-full sm:mx-auto  flex-col bg-white border shadow-sm rounded-md dark:bg-slate-800 dark:border-gray-700">
+                        <div class="flex justify-between items-center py-2.5 px-4 border-b dark:border-gray-700">
+                            <h3 class="font-medium text-gray-800 dark:text-white text-lg">
+                                Exchange Rates
+                            </h3>
+                            <button class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 dark:text-gray-200"
+                                    data-fc-dismiss type="button">
+                                <span class="material-symbols-rounded">close</span>
+                            </button>
+                        </div>
+                        <div class="px-4 py-8 overflow-y-auto">
+                            <p class="font-bold text-primary">Kindly be aware that exchange rates may fluctuate based on currency market prices.</p>
+
+                            <div class="bg-gray-200 p-4 rounded-md mt-3">
+                                <ul class="list-disc ml-6">
+                                    <li>1 ARUBA(AWG) – ₦497</li>
+                                    <li>1 USD - ₦1350 (Official Market Rate)</li>
+                                    <li>1 USD - ₦1410 (Parallel Market Rate)</li>
+                                </ul>
+
+                                <p class="mt-4">Aruba to USD exchange processing time: <span class="font-bold text-primary">up to 4 hours.</span></p>
+                                <p>USD to Naira exchange processing time (Official rate): <span class="font-bold text-primary">up to 4 hours.</span></p>
+                                <p>USD to Naira exchange processing time (Parallel rate): <span class="font-bold text-primary">up to 4 hours.</span></p>
+                            </div>
+
+
+                        </div>
+                        <div class="flex justify-end items-center gap-4 p-4 border-t dark:border-slate-700">
+                            <button class="py-2 px-5 inline-flex justify-center items-center gap-2 rounded dark:text-gray-200 border dark:border-slate-700 font-medium hover:bg-slate-100 hover:dark:bg-slate-700 transition-all" data-fc-dismiss type="button">Close</button>
                         </div>
                     </div>
                 </div>

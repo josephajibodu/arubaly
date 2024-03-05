@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuyArubaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FundsController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,8 @@ Route::get('/', function () {
 Route::group(['auth' => 'web'], function () {
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/convert', [FundsController::class, 'index'])->name('convert');
+    Route::get('/convert', [FundsController::class, 'index'])->name('transaction.convert');
+
+    Route::get('/buy-aruba', [BuyArubaController::class, 'index'])->name('transaction.buy-awg');
 
 });
