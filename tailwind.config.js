@@ -5,6 +5,7 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue",
         "node_modules/@frostui/tailwindcss/**/*.js",
+        "./node_modules/flowbite/**/*.js",
     ],
     darkMode: ["class", '[data-mode="dark"]'],
     theme: {
@@ -41,6 +42,7 @@ export default {
         require("@tailwindcss/forms"),
         require("@tailwindcss/typography"),
         require("@tailwindcss/aspect-ratio"),
+        require('flowbite/plugin'),
     ],
 }
 

@@ -56,7 +56,7 @@ class User extends Authenticatable implements FilamentUser, HasName
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'availability' => MerchantAvailability::class
+        'availability' => MerchantAvailability::class,
     ];
 
     /**

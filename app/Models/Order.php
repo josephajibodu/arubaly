@@ -14,7 +14,7 @@ class Order extends Model
     protected $guarded = ['id'];
 
     protected $casts = [
-        'status' => TradeStatus::class
+        'status' => TradeStatus::class,
     ];
 
     /**

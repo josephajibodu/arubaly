@@ -23,5 +23,4 @@ enum MerchantAvailability: string
     {
         return $this->name;
     }
-
 }

@@ -13,11 +13,10 @@ class Transaction extends Model
     use HasFactory;
 
     protected $casts = [
-        'type' => TransactionType::class
+        'type' => TransactionType::class,
     ];
 
     protected $guarded = ['id'];
-
 
     /**
      * Relationships
