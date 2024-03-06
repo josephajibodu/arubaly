@@ -2,8 +2,12 @@
 
 namespace App\Enums;
 
+use App\Enums\Traits\HasValues;
+
 enum TransactionType: string
 {
+    use HasValues;
+
     case CONVERSION = 'conversion';
     case WITHDRAWAL = 'withdrawal';
     case TRANSFER = 'transfer';

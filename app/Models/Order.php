@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Currency;
 use App\Enums\TradeStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,10 @@ class Order extends Model
 
     protected $casts = [
         'status' => TradeStatus::class,
+        'payable_currency' => Currency::class,
     ];
+
+    protected $relations = ['merchant'];
 
     /**
      * Relationships
@@ -23,5 +27,10 @@ class Order extends Model
     public function transaction(): BelongsTo
     {
         return $this->belongsTo(Transaction::class);
+    }
+
+    public function merchant(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

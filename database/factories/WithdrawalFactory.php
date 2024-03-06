@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class WithdrawalFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'transaction_id' => function () {
+                return Transaction::factory()->withdrawal()->create()->id;
+            },
+            'bankname' => fake()->company,
+            'accountname' => fake()->name,
+            'accountnumber' => str_pad(rand(1, 9999999999), 10, '0', STR_PAD_LEFT),
         ];
     }
 }

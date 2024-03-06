@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\Currency;
+use App\Enums\TradeStatus;
 use App\Enums\TransactionType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +16,8 @@ class Transaction extends Model
 
     protected $casts = [
         'type' => TransactionType::class,
+        'status' => TradeStatus::class,
+        'currency' => Currency::class,
     ];
 
     protected $guarded = ['id'];

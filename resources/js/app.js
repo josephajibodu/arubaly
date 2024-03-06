@@ -3,6 +3,7 @@ import "./bootstrap";
 import "@frostui/tailwindcss";
 import feather from "feather-icons";
 import 'flowbite';
+import 'animate.css';
 
 /**
  * Theme: Konrix - Responsive Tailwind Admin Dashboard

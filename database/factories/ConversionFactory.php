@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\Currency;
+use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,14 @@ class ConversionFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'transaction_id' => function () {
+                return Transaction::factory()->conversion()->create()->id;
+            },
+            'rate' => fake()->numberBetween(100, 1000),
+            'to_currency' => fake()->randomElement(Currency::values()),
+            'to_amount' => fake()->numberBetween(1000, 10000),
+            'received_amount' => fake()->numberBetween(900, 950),
+            'exchange_fee' => fake()->numberBetween(1, 50),
         ];
     }
 }

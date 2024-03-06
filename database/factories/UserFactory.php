@@ -36,12 +36,6 @@ class UserFactory extends Factory
             'bankname' => fake()->randomElement(['Access Bank', 'Opay Ltd', 'Kuda Bank', '9PSB', 'First Bank', 'GTCO']),
             'accountname' => "$fn $ln",
             'accountnumber' => str_pad(rand(1, 9999999999), 10, '0', STR_PAD_LEFT),
-            'rate' => fake()->numberBetween(100, 345) * 100,
-            'min_amount' => fake()->numberBetween(20_000, 50_000) * 100,
-            'max_amount' => fake()->numberBetween(100_000, 500_000) * 100,
-            'payment_type' => fake()->randomElement(['Bank Transfer']),
-            'terms' => fake()->sentence,
-            'availability' => fake()->randomElement(MerchantAvailability::values()),
 
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
@@ -57,6 +51,21 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    /**
+     * merchant account state
+     */
+    public function merchant(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'rate' => fake()->numberBetween(100, 345) * 100,
+            'min_amount' => fake()->numberBetween(20_000, 50_000) * 100,
+            'max_amount' => fake()->numberBetween(100_000, 500_000) * 100,
+            'payment_type' => fake()->randomElement(['Bank Transfer']),
+            'terms' => fake()->sentence,
+            'availability' => fake()->randomElement(MerchantAvailability::values()),
         ]);
     }
 

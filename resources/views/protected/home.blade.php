@@ -104,12 +104,37 @@
                         <div class="px-4 py-8 overflow-y-auto">
                             <p class="font-bold text-primary">Kindly be aware that exchange rates may fluctuate based on currency market prices.</p>
 
-                            <div class="bg-gray-200 p-4 rounded-md mt-3">
-                                <ul class="list-disc ml-6">
-                                    <li>1 ARUBA(AWG) – ₦497</li>
-                                    <li>1 USD - ₦1350 (Official Market Rate)</li>
-                                    <li>1 USD - ₦1410 (Parallel Market Rate)</li>
-                                </ul>
+                            <div class="rounded-md mt-3 space-y-4">
+                                <div class="flex justify-between p-4 border rounded">
+                                    <span class="flex items-center gap-1 font-bold">
+                                        <img src="{{ asset('images/flags/ng.png') }}?v1" class="h-4 w-4 rounded-full"  alt="awg icon"/>
+                                        1 ARUBA(AWG)
+                                    </span>
+                                    <span class="flex items-center gap-1 font-bold">
+                                        ₦497
+                                    </span>
+                                </div>
+
+                                <div class="flex justify-between p-4 border rounded">
+                                    <span class="flex items-center gap-1 font-bold">
+                                        <img src="{{ asset('images/flags/us.jpg') }}?v1" class="h-4 w-4 rounded-full"  alt="awg icon"/>
+                                        1 USD
+                                    </span>
+                                    <span class="flex items-center gap-1 font-bold">
+                                        ₦1350 (Official Market Rate)
+                                    </span>
+                                </div>
+
+                                <div class="flex justify-between p-4 border rounded">
+                                    <span class="flex items-center gap-1 font-bold">
+                                        <img src="{{ asset('images/flags/us.jpg') }}?v1" class="h-4 w-4 rounded-full"  alt="awg icon"/>
+                                        1 USD
+                                    </span>
+                                    <span class="flex items-center gap-1 font-bold">
+                                        ₦1410 (Parallel Market Rate)
+                                    </span>
+                                </div>
+
 
                                 <p class="mt-4">Aruba to USD exchange processing time: <span class="font-bold text-primary">up to 4 hours.</span></p>
                                 <p>USD to Naira exchange processing time (Official rate): <span class="font-bold text-primary">up to 4 hours.</span></p>
@@ -183,39 +208,25 @@
                                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                     <thead>
                                     <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Age</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Address</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Trx Ref</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                                         <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">John Brown</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">45</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">New York No. 1 Lake Park</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                            <a class="text-primary hover:text-sky-700" href="#">Delete</a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Jim Green</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">27</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">London No. 1 Lake Park</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                            <a class="text-primary hover:text-sky-700" href="#">Delete</a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Joe Black</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">31</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">Sidney No. 1 Lake Park</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                            <a class="text-primary hover:text-sky-700" href="#">Delete</a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">John Brown</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">45</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">45</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">45</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">New York No. 1 Lake Park</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                                <a class="text-primary hover:text-sky-700" href="#">Delete</a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

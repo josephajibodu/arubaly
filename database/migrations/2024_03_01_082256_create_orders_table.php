@@ -16,8 +16,10 @@ return new class extends Migration
             $table->foreignId('transaction_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('merchant_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('rate');
+            $table->string('payable_currency');
             $table->unsignedBigInteger('payable_amount');
-            $table->string('status')->comment('pending, payment_sent, payment_confirmed, cancelled, completed');
+            $table->integer('payment_limit');
+            $table->string('payment_proof')->nullable();
             $table->timestamps();
         });
     }
