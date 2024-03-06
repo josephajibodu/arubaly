@@ -61,6 +61,8 @@ class User extends Authenticatable implements FilamentUser, HasName
         'availability' => MerchantAvailability::class,
     ];
 
+    protected $with = ['awg', 'ngn', 'usd'];
+
     /**
      * Relationships
      */

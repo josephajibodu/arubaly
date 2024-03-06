@@ -3,6 +3,7 @@
 use App\Http\Controllers\BuyArubaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FundsController;
+use App\Http\Controllers\TransferController;
 use App\Http\Controllers\WithdrawalController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,5 +33,7 @@ Route::group(['auth' => 'web'], function () {
 
 
     Route::get('/withdraw', [WithdrawalController::class, 'index'])->name('transaction.withdraw');
+
+    Route::get('/transfer', [TransferController::class, 'index'])->name('transaction.transfer');
 
 });
