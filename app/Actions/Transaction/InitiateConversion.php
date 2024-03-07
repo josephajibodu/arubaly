@@ -36,8 +36,10 @@ class InitiateConversion
                 'user_id' => $user->id,
             ]);
 
-            // Create the associated conversion record
-            $exchangeFee = $this->calculateExchangeFee($localAmount);
+            $convertedAmount = $localAmount * $this->getConversionRate($fromCurrency);
+
+            $exchangeFee = $this->calculateExchangeFee($convertedAmount);
+
             $processingTime = match ($fromCurrency) {
                 Currency::USD => $isParallel ? $this->setting->usd_to_naira_processing_time_parallel_market : $this->setting->usd_to_naira_processing_time_official,
                 Currency::AWG => $this->setting->aruba_to_usd_processing_time,
@@ -47,8 +49,8 @@ class InitiateConversion
             $transaction->conversion()->create([
                 'rate' => $this->getConversionRate($fromCurrency) * 100,
                 'to_currency' => $toCurrency,
-                'to_amount' => $localAmount * $this->getConversionRate($fromCurrency) * 100,
-                'received_amount' => $localAmount - $exchangeFee,
+                'to_amount' => $convertedAmount,
+                'received_amount' => $convertedAmount - $exchangeFee,
                 'exchange_fee' => $exchangeFee,
                 'processing_time' => $processingTime,
             ]);

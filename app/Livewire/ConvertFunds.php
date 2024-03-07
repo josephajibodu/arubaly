@@ -90,7 +90,7 @@ class ConvertFunds extends Component
 
             $this->dispatch('success', "Conversion initiated successfully. Feel free to monitor your dashboard for real-time updates on the remaining time.");
 
-            $this->reset('amount');
+            $this->reset('amount', 'amountReceived');
             $this->user = User::find(auth()->id());
         } catch (InsufficientFundsException $exception) {
             report($exception);
@@ -116,11 +116,17 @@ class ConvertFunds extends Component
 
     public function calculate()
     {
-        $this->amountReceived = $this->rate * $this->amount;
+        $settings = app(GeneralSetting::class);
+
+        $amountYoullReceive = $this->rate * $this->amount * (100 - $settings->exchange_fee_percentage) * 0.01;
+        $this->amountReceived = (float) sprintf("%.2f", $amountYoullReceive);
     }
 
     private function calculateInverse()
     {
-        $this->amount = (float) Number::format(($this->amountReceived / $this->rate));
+        $settings = app(GeneralSetting::class);
+
+        $amountToConvert = $this->amountReceived / ($this->rate * (100 - $settings->exchange_fee_percentage) * 0.01);
+        $this->amount = (float) sprintf("%.2f", $amountToConvert);
     }
 }

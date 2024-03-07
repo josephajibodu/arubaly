@@ -88,13 +88,13 @@
                         <span class="flex items-center gap-1">
                             Amount we'll convert
                         </span>
-                <span class="text-gray-900">{{ $amount ?? 0 }}</span>
+                <span class="text-gray-900">{{ \Illuminate\Support\Number::format(($amount ?? 0) * (100 - $settings->exchange_fee_percentage) * 0.01) }}</span>
             </div>
             <div class="flex justify-between">
                         <span class="flex items-center gap-1">
                             Exchange Duration
                         </span>
-                <span class="text-gray-900">{{ $processingTime }}hr</span>
+                <span class="text-gray-900">{{ $processingTime }} hr</span>
             </div>
             <div class="flex justify-between">
                         <span class="flex items-center gap-1">
