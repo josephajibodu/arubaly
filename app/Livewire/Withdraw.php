@@ -2,8 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Actions\Transaction\InitiateWithdrawal;
+use App\Exceptions\InsufficientFundsException;
 use App\Models\User;
 use App\Models\Withdrawal;
+use Illuminate\Support\Number;
 use Livewire\Component;
 
 class Withdraw extends Component
@@ -24,14 +27,10 @@ class Withdraw extends Component
 
     public function updated($property)
     {
-        if ($property == 'amount') {
-            if ($this->amount * 100 > $this->user->ngn->balance) {
-                $this->addError('amount', 'Withdrawal amount should be less than balance');
-            }
-        }
+
     }
 
-    public function withdraw()
+    public function withdraw(InitiateWithdrawal $withdrawal)
     {
         $this->validate([
             'amount' => 'numeric|min:1000',
@@ -46,12 +45,24 @@ class Withdraw extends Component
             return;
         }
 
-        // create the withdrawal
-        $withdrawal = Withdrawal::create([
-            'amount' => $this->amount * 100,
-        ]);
 
-        // or create an action that creates each of these transactions
 
+        // create the transfer
+        try {
+            $withdrawal->execute(
+                user: $this->user,
+                amount: $this->amount
+            );
+
+            $withdrawalAmount = Number::format($this->amount);
+            $this->dispatch('success', "Withdrawal successful. ₦$withdrawalAmount will be sent to the provided bank account.");
+
+            $this->reset();
+            $this->user = User::find(auth()->id());
+        } catch (InsufficientFundsException $exception) {
+            report($exception);
+
+            $this->dispatch('error', $exception);
+        }
     }
 }

@@ -18,11 +18,6 @@ class InitiateWithdrawal
     {
         $localAmount = $amount * 100;
 
-        // Validate that the amount is positive
-        if ($amount <= 0) {
-            throw new InvalidArgumentException('Amount must be a positive value.');
-        }
-
         return DB::transaction(function () use ($localAmount, $user) {
 
             // Debit the user's balance
@@ -30,7 +25,7 @@ class InitiateWithdrawal
 
             // Create a new withdrawal transaction
             $transaction = Transaction::create([
-                'amount' => $amount * 100,
+                'amount' => $localAmount,
                 'reference' => uniqid(),
                 'description' => 'Withdrawal to local bank',
                 'status' => TradeStatus::PENDING,

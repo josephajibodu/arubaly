@@ -143,8 +143,6 @@
     </div>
 </form>
 
-
-
 @script
     <script>
         $wire.on('success', (message) => {
