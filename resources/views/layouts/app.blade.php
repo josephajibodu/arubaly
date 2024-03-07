@@ -13,6 +13,8 @@
     <!-- Styles -->
     @vite(['resources/css/app.scss', 'resources/css/icons.scss', 'resources/js/app.js'])
 
+    @vite('resources/js/alerts.js')
+
     @stack('styles')
 
 </head>
@@ -46,8 +48,54 @@
     @include('partials.customizer')
 
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>--}}
     @stack('scripts')
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+
+            @if($errors)
+            @foreach($errors->all() as $error)
+            Swal.fire(
+                'Ooops!!!',
+                '{{ $error }}',
+                'error',
+            );
+            @endforeach
+            @endif
+
+            @if (Session()->has('error'))
+            Swal.fire(
+                'Ooops!!!',
+                '{{ session('error') }}',
+                'error',
+            );
+            @elseif (Session()->has('success'))
+            Swal.fire(
+                'Thank you!',
+                '{{ session('success') }}',
+                'success',
+            );
+            @elseif (Session()->has('info'))
+            Swal.fire(
+                'Note',
+                '{{ session('info') }}',
+                'info',
+            );
+            @elseif (Session()->has('warning'))
+            Swal.fire(
+                'Warning',
+                '{{ session('warning') }}',
+                'warning',
+            );
+            @endif
+            // $(document).ready(function(){
+            //   $(window).load(function(){
+            //     alert("Page loaded.");
+            //   });
+            // });
+        });
+    </script>
 </body>
 
 </html>

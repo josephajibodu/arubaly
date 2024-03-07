@@ -30,3 +30,4 @@
         @livewire('transfer')
     </div>
 @endsection
+
