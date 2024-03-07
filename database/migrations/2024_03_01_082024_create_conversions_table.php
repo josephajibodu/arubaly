@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('to_amount');
             $table->unsignedBigInteger('received_amount');
             $table->unsignedBigInteger('exchange_fee');
+            $table->integer('processing_time');
 
             $table->timestamps();
         });

@@ -27,6 +27,7 @@ class ConversionFactory extends Factory
             'to_amount' => fake()->numberBetween(1000, 10000),
             'received_amount' => fake()->numberBetween(900, 950),
             'exchange_fee' => fake()->numberBetween(1, 50),
+            'processing_time' => fake()->numberBetween(60, 300),
         ];
     }
 }

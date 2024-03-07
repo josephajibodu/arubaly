@@ -8,16 +8,23 @@ use App\Enums\TransactionType;
 use App\Exceptions\InsufficientFundsException;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Settings\GeneralSetting;
+use Exception;
 use http\Exception\InvalidArgumentException;
 use Illuminate\Support\Facades\DB;
 
 class InitiateConversion
 {
-    public function execute(User $user, float $amount, Currency $fromCurrency, Currency $toCurrency, bool $officialMarket = false)
+    public function __construct(
+        public GeneralSetting $setting,
+    )
+    {}
+
+    public function execute(User $user, float $amount, Currency $fromCurrency, Currency $toCurrency, bool $isParallel = false)
     {
         $localAmount = $amount * 100;
 
-        return DB::transaction(function () use ($localAmount, $user, $fromCurrency, $toCurrency) {
+        return DB::transaction(function () use ($isParallel, $localAmount, $user, $fromCurrency, $toCurrency) {
             // Create a new conversion transaction
             $transaction = Transaction::create([
                 'amount' => $localAmount,
@@ -30,12 +37,20 @@ class InitiateConversion
             ]);
 
             // Create the associated conversion record
-            $conversion = $transaction->conversion()->create([
-                'rate' => $this->getConversionRate($fromCurrency, $toCurrency) * 100,
+            $exchangeFee = $this->calculateExchangeFee($localAmount);
+            $processingTime = match ($fromCurrency) {
+                Currency::USD => $isParallel ? $this->setting->usd_to_naira_processing_time_parallel_market : $this->setting->usd_to_naira_processing_time_official,
+                Currency::AWG => $this->setting->aruba_to_usd_processing_time,
+                Currency::NGN => throw new Exception('To be implemented')
+            };
+
+            $transaction->conversion()->create([
+                'rate' => $this->getConversionRate($fromCurrency) * 100,
                 'to_currency' => $toCurrency,
-                'to_amount' => $localAmount * $this->getConversionRate($fromCurrency, $toCurrency) * 100,
-                'received_amount' => $localAmount,
-                'exchange_fee' => $this->calculateExchangeFee($localAmount),
+                'to_amount' => $localAmount * $this->getConversionRate($fromCurrency) * 100,
+                'received_amount' => $localAmount - $exchangeFee,
+                'exchange_fee' => $exchangeFee,
+                'processing_time' => $processingTime,
             ]);
 
             // Debit the user's balance in the original currency
@@ -46,29 +61,33 @@ class InitiateConversion
     }
 
     /**
-     * Get the conversion rate between two currencies (for demonstration purposes, you might use an external API or database)
+     * Get the conversion rate between two currencies
      *
      * @param Currency $fromCurrency
-     * @param Currency $toCurrency
+     * @param bool $isParallel
      * @return float
      */
-    private function getConversionRate(Currency $fromCurrency, Currency $toCurrency): float
+    private function getConversionRate(Currency $fromCurrency, bool $isParallel = true): float
     {
-        // Example: You might retrieve the conversion rate from an external API or database
-        // For simplicity, return a fixed rate here.
-        return 1.5; // Replace with actual conversion logic
+        if ($fromCurrency == Currency::AWG) {
+            return $this->setting->awg_rate;
+        }
+
+        if ($fromCurrency == Currency::USD && $isParallel) {
+            return $this->setting->usd_rate_parallel;
+        }
+
+        return $this->setting->usd_rate_official;
     }
 
     /**
-     * Calculate the exchange fee (for demonstration purposes, you might have a more sophisticated fee structure)
+     * Calculate the exchange fee
      *
      * @param float $amount
      * @return float
      */
     private function calculateExchangeFee(float $amount): float
     {
-        // Example: You might have a more complex fee calculation based on the amount or other factors
-        // For simplicity, return a fixed fee here.
-        return $amount * 0.01; // 1% fee
+        return $amount * ($this->setting->exchange_fee_percentage * 0.01);
     }
 }

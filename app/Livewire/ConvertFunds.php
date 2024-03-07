@@ -2,7 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Actions\Transaction\InitiateConversion;
 use App\Enums\Currency;
+use App\Exceptions\InsufficientFundsException;
+use App\Models\User;
+use App\Settings\GeneralSetting;
+use Illuminate\Support\Number;
 use Livewire\Component;
 
 class ConvertFunds extends Component
@@ -15,9 +20,11 @@ class ConvertFunds extends Component
 
     public float $rate = 0.00;
 
-    public float $amount = 0;
+    public float $amount;
 
-    public float $amountReceived = 0;
+    public float $amountReceived;
+
+    public User $user;
 
     public function render()
     {
@@ -31,32 +38,80 @@ class ConvertFunds extends Component
         $this->isParallel = $isParallel;
 
         // get the rate based on the from and to
-        $this->rate = $this->getRate($from, $to, $isParallel);
+        $this->rate = $this->getRate($from, $isParallel);
+        $this->user = User::find(auth()->id());
+
     }
 
     public function setParallel(bool $isParallel)
     {
         $this->isParallel = $isParallel;
+
+        $this->rate = $this->getRate($this->from, $this->isParallel);
     }
 
     public function updated($property)
     {
         //        dd($property);
         if ($property == 'amount') {
+            if (!isset($this->amount) || !$this->amount) {
+                $this->addError('amount', 'Please input a valid amount');
+                return;
+            }
+
             $this->calculate();
-        } elseif ($property == 'amountReceived') {
+        }
+
+        if ($property == 'amountReceived') {
+            if (!isset($this->amountReceived) || !$this->amountReceived) {
+                $this->addError('amountReceived', 'Please input a valid amount');
+                return;
+            }
+
             $this->calculateInverse();
         }
     }
 
-    public function convert()
+    public function convert(InitiateConversion $conversion)
     {
+        $this->validate([
+            'amount' => 'numeric|min:1',
+        ], [
+            'amount.numeric' => 'Please input a valid amount'
+        ]);
 
+        try {
+            $conversion->execute(
+                user: $this->user,
+                amount: $this->amount,
+                fromCurrency: $this->from,
+                toCurrency: $this->to
+            );
+
+            $this->dispatch('success', "Conversion initiated successfully. Feel free to monitor your dashboard for real-time updates on the remaining time.");
+
+            $this->reset('amount');
+            $this->user = User::find(auth()->id());
+        } catch (InsufficientFundsException $exception) {
+            report($exception);
+
+            $this->dispatch('error', $exception);
+        }
     }
 
-    private function getRate(Currency $from, Currency $to, bool $isParallel): int
+    private function getRate(Currency $from, bool $isParallel): float
     {
-        return rand(100, 300);
+        $settings = app(GeneralSetting::class);
+
+        if ($from == Currency::AWG) {
+            return $settings->awg_rate;
+        }
+
+        if ($from == Currency::USD && $isParallel) {
+            return $settings->usd_rate_parallel;
+        }
+
+        return $settings->usd_rate_official;
     }
 
     public function calculate()
@@ -66,6 +121,6 @@ class ConvertFunds extends Component
 
     private function calculateInverse()
     {
-        $this->amount = $this->amountReceived / $this->rate;
+        $this->amount = (float) Number::format(($this->amountReceived / $this->rate));
     }
 }
