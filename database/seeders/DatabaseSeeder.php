@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,7 +20,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
-        User::factory(25)->merchant()->create();
+        $merchants = User::factory(25)->merchant()->create();
+
+        $merchantRole = Role::create(['name' => 'merchant']);
+        $compilerRole = Role::create(['name' => 'compiler']);
+        Role::create(['name' => 'admin']);
+
+        foreach ($merchants as $merchant) {
+            $merchant->assignRole($merchantRole);
+        }
 
         $this->call([
             TransactionSeeder::class,

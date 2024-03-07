@@ -40,8 +40,6 @@ class BuyAruba extends Component
     {
         // TODO: create a better way to get merchants
         $this->merchants = User::with(['awg', 'usd', 'ngn'])->where('rate', '>', 0)->get();
-
-        $this->merchant = User::with(['awg', 'usd', 'ngn'])->where('rate', '>', 0)->inRandomOrder()->first();
     }
 
     public function buy()
