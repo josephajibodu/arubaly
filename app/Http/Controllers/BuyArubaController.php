@@ -14,7 +14,7 @@ class BuyArubaController extends Controller
     public function show(Transaction $order)
     {
         return view('protected.transactions.order', [
-            'order' => $order
+            'order' => $order,
         ]);
     }
 }

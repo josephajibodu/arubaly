@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Enums\Currency;
 use App\Enums\MerchantAvailability;
 use App\Enums\TransactionType;
+use App\Models\Traits\WalletActions;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
@@ -20,6 +21,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable implements FilamentUser, HasName
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use WalletActions;
 
     /**
      * The attributes that are mass assignable.

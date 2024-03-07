@@ -31,7 +31,6 @@ Route::group(['auth' => 'web'], function () {
 
     Route::get('/buy-aruba/{order:reference}', [BuyArubaController::class, 'show'])->name('transaction.show');
 
-
     Route::get('/withdraw', [WithdrawalController::class, 'index'])->name('transaction.withdraw');
 
     Route::get('/transfer', [TransferController::class, 'index'])->name('transaction.transfer');

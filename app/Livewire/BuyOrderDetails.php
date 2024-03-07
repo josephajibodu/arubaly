@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Enums\TradeStatus;
-use App\Models\Order;
 use App\Models\Transaction;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -33,7 +32,7 @@ class BuyOrderDetails extends Component
         $this->validate([
             'payment_proof' => 'image|max:2048',
         ], [
-            'payment_proof.image' => 'Please upload a valid payment proof'
+            'payment_proof.image' => 'Please upload a valid payment proof',
         ]);
 
         $path = $this->payment_proof->store(path: 'payment_proof');
@@ -44,7 +43,7 @@ class BuyOrderDetails extends Component
         ]);
 
         $this->transaction->update([
-            'status' => TradeStatus::PAYMENT_SENT
+            'status' => TradeStatus::PAYMENT_SENT,
         ]);
 
     }
@@ -52,10 +51,9 @@ class BuyOrderDetails extends Component
     public function cancelTrade()
     {
         $this->transaction->update([
-            'status' => TradeStatus::CANCELLED
+            'status' => TradeStatus::CANCELLED,
         ]);
 
         $this->transaction = $this->transaction->refresh();
     }
 }
-

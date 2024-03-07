@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         User::factory(25)->merchant()->create();
 
         $this->call([
-            TransactionSeeder::class
+            TransactionSeeder::class,
         ]);
     }
 }

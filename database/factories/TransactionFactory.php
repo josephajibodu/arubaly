@@ -83,29 +83,29 @@ class TransactionFactory extends Factory
             'type' => TransactionType::WITHDRAWAL,
         ]);
     }
-//    /**
-//     * Configure the model factory.
-//     *
-//     * @return $this
-//     */
-//    public function configure(): static
-//    {
-//        return $this->afterCreating(function (Transaction $transaction) {
-//            switch ($transaction->type) {
-//                case TransactionType::CONVERSION:
-//                    Conversion::factory()->create(['transaction_id' => $transaction->id]);
-//                    break;
-//                case TransactionType::WITHDRAWAL:
-//                    Withdrawal::factory()->create(['transaction_id' => $transaction->id]);
-//                    break;
-//                case TransactionType::TRANSFER:
-//                    Transfer::factory()->create(['transaction_id' => $transaction->id]);
-//                    break;
-//                case TransactionType::ORDER:
-//                    Order::factory()->create(['transaction_id' => $transaction->id]);
-//                    break;
-//            }
-//        });
-//    }
+    //    /**
+    //     * Configure the model factory.
+    //     *
+    //     * @return $this
+    //     */
+    //    public function configure(): static
+    //    {
+    //        return $this->afterCreating(function (Transaction $transaction) {
+    //            switch ($transaction->type) {
+    //                case TransactionType::CONVERSION:
+    //                    Conversion::factory()->create(['transaction_id' => $transaction->id]);
+    //                    break;
+    //                case TransactionType::WITHDRAWAL:
+    //                    Withdrawal::factory()->create(['transaction_id' => $transaction->id]);
+    //                    break;
+    //                case TransactionType::TRANSFER:
+    //                    Transfer::factory()->create(['transaction_id' => $transaction->id]);
+    //                    break;
+    //                case TransactionType::ORDER:
+    //                    Order::factory()->create(['transaction_id' => $transaction->id]);
+    //                    break;
+    //            }
+    //        });
+    //    }
 
 }

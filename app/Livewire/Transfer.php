@@ -12,10 +12,11 @@ class Transfer extends Component
 
     public string $recipient;
 
+    public User $recipientModel;
+
     public User $user;
 
     public Currency $currency;
-
 
     public function render()
     {
@@ -37,17 +38,21 @@ class Transfer extends Component
                         $this->addError('amount', 'Amount to transfer should be less than the available balance');
                     }
                     break;
-            case Currency::AWG:
-                if ($this->amount * 100 > $this->user->awg->balance) {
-                    $this->addError('amount', 'Amount to transfer should be less than the available balance');
-                }
-                break;
+                case Currency::AWG:
+                    if ($this->amount * 100 > $this->user->awg->balance) {
+                        $this->addError('amount', 'Amount to transfer should be less than the available balance');
+                    }
+                    break;
             }
         }
 
         if ($property == 'currency') {
             $this->clearValidation();
             $this->reset('amount');
+        }
+
+        if ($property == 'recipient') {
+            $this->findUser();
         }
     }
 
@@ -57,13 +62,25 @@ class Transfer extends Component
             'amount' => 'numeric|min:1000',
         ], [
             'amount.min' => 'Amount to transfer must be at least ₦1000',
-            'amount.numeric' => 'Please enter a valid amount'
+            'amount.numeric' => 'Please enter a valid amount',
         ]);
 
         // create the transfer
 
-
         // or create an action that creates each of these transactions
 
+    }
+
+    private function findUser()
+    {
+        $user = User::where('username', $this->recipient)->first();
+        if (! $user) {
+            $this->addError('recipient', 'User with this username does not exist.');
+
+            return;
+        }
+
+        $this->recipientModel = $user;
+        $this->clearValidation();
     }
 }
