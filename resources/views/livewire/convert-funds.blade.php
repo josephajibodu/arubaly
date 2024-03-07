@@ -21,6 +21,24 @@
             <span class="font-bold text-gray-900 text-base">3.456</span>
         </div>
 
+        <div class="flex gap-4">
+            <div wire:click="setParallel('{{ false }}')" class="cursor-pointer flex justify-between p-4 @if(!$isParallel) border-4 border-primary bg-primary/30 @else border @endif rounded w-full">
+                <span class="flex items-center gap-1">
+                    Official
+                </span>
+                <span class="font-bold text-gray-900 text-base">3.456</span>
+            </div>
+
+            <div wire:click="setParallel('{{ true }}')" class="cursor-pointer flex justify-between p-4 @if($isParallel) border-4 border-primary bg-primary/30 @else border @endif rounded w-full">
+                <span class="flex items-center gap-1">
+                    Parallel
+                </span>
+                <span class="font-bold text-gray-900 text-base">3.456</span>
+            </div>
+        </div>
+
+
+
 
         <div class="flex flex-col gap-2">
             <label for="amount-to-convert">Amount to convert</label>

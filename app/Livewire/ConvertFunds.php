@@ -34,6 +34,11 @@ class ConvertFunds extends Component
         $this->rate = $this->getRate($from, $to, $isParallel);
     }
 
+    public function setParallel(bool $isParallel)
+    {
+        $this->isParallel = $isParallel;
+    }
+
     public function updated($property)
     {
         //        dd($property);
