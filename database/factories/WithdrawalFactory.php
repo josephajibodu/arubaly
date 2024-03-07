@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,9 +18,11 @@ class WithdrawalFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::find(1);
+
         return [
-            'transaction_id' => function () {
-                return Transaction::factory()->withdrawal()->create()->id;
+            'transaction_id' => function () use ($user) {
+                return Transaction::factory()->withdrawal()->for($user)->create()->id;
             },
             'bankname' => fake()->company,
             'accountname' => fake()->name,

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Convert Funds')
+@section('title', 'Transfer Funds')
 
 @section('content')
     <div class="flex flex-col items-center py-10">

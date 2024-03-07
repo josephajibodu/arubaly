@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class WithdrawalController extends Controller
      */
     public function index()
     {
-        return view('protected.withdraw');
+        $withdrawals = Transaction::withdrawals()->simplePaginate(25);
+        
+        return view('protected.withdrawals-list', ['transactions' => $withdrawals]);
     }
 
     /**
@@ -20,46 +23,6 @@ class WithdrawalController extends Controller
      */
     public function create()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Withdrawal $withdrawal)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Withdrawal $withdrawal)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Withdrawal $withdrawal)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Withdrawal $withdrawal)
-    {
-        //
+        return view('protected.withdraw');
     }
 }

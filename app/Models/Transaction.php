@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Currency;
 use App\Enums\TradeStatus;
 use App\Enums\TransactionType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -48,5 +49,37 @@ class Transaction extends Model
     public function withdrawal(): HasOne
     {
         return $this->hasOne(Withdrawal::class);
+    }
+
+    /**
+     * Scope a query to only include withdrawals
+     */
+    public function scopeWithdrawals(Builder $query): void
+    {
+        $query->where('type', TransactionType::WITHDRAWAL);
+    }
+
+    /**
+     * Scope a query to only include transfers
+     */
+    public function scopeTransfers(Builder $query): void
+    {
+        $query->where('type', TransactionType::TRANSFER);
+    }
+
+    /**
+     * Scope a query to only include buy orders
+     */
+    public function scopeBuyOrders(Builder $query): void
+    {
+        $query->where('type', TransactionType::ORDER);
+    }
+
+    /**
+     * Scope a query to only include conversions
+     */
+    public function scopeConversions(Builder $query): void
+    {
+        $query->where('type', TransactionType::CONVERSION);
     }
 }

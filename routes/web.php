@@ -25,14 +25,22 @@ Route::get('/', function () {
 Route::group(['auth' => 'web'], function () {
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/convert', [FundsController::class, 'index'])->name('transaction.convert');
+    Route::get('/convert-funds', [FundsController::class, 'create'])->name('transaction.convert');
 
-    Route::get('/buy-aruba', [BuyArubaController::class, 'index'])->name('transaction.buy-awg');
+    Route::get('/convert-funds/list', [FundsController::class, 'index'])->name('transaction.convert.index');
+
+    Route::get('/buy-aruba', [BuyArubaController::class, 'create'])->name('transaction.buy-awg.create');
+
+    Route::get('/buy-aruba/orders', [BuyArubaController::class, 'index'])->name('transaction.buy-awg.index');
 
     Route::get('/buy-aruba/{order:reference}', [BuyArubaController::class, 'show'])->name('transaction.buy-awg.show');
 
-    Route::get('/withdraw', [WithdrawalController::class, 'index'])->name('transaction.withdraw');
+    Route::get('/withdrawals', [WithdrawalController::class, 'index'])->name('transaction.withdrawal.index');
 
-    Route::get('/transfer', [TransferController::class, 'index'])->name('transaction.transfer');
+    Route::get('/withdraw-funds', [WithdrawalController::class, 'create'])->name('transaction.withdrawal.create');
+
+    Route::get('/transfers', [TransferController::class, 'index'])->name('transaction.transfer.index');
+
+    Route::get('/transfer-funds', [TransferController::class, 'index'])->name('transaction.transfer.create');
 
 });

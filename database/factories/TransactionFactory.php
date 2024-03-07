@@ -81,6 +81,7 @@ class TransactionFactory extends Factory
             'description' => 'Withdrawal to local bank',
             'status' => TradeStatus::PENDING,
             'type' => TransactionType::WITHDRAWAL,
+            'amount' => fake()->numberBetween(3000, 50000) * 100,
         ]);
     }
     //    /**

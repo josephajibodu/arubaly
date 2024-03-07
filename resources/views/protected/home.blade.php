@@ -77,7 +77,7 @@
                                     </div>
                                 </div>
 
-                                <button type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Withdraw Funds</button>
+                                <a href="{{ route('transaction.withdrawal.create') }}" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Withdraw Funds</a>
                             </div>
 
                         </div>

@@ -12,7 +12,7 @@ class TransferController extends Controller
      */
     public function index()
     {
-        return view('protected.transfer');
+        return view('protected.transfers-list');
     }
 
     /**
@@ -20,7 +20,7 @@ class TransferController extends Controller
      */
     public function create()
     {
-        //
+        return view('protected.transfer');
     }
 
     /**
