@@ -57,6 +57,7 @@ class TransactionFactory extends Factory
             'description' => 'Transfer to user',
             'status' => TradeStatus::PENDING,
             'type' => TransactionType::TRANSFER,
+            'amount' => fake()->numberBetween(38, 5999) * 100,
         ]);
     }
 

@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\User;
 
 class BuyArubaController extends Controller
 {
     public function index()
     {
-        return view('protected.buy-awg-orders');
+        $user = User::find(auth()->id());
+        $orders = $user->orders()->desc()->simplePaginate(25);
+
+        return view('protected.buy-awg-orders', ['transactions' => $orders]);
     }
 
     public function create()

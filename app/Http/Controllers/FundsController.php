@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Currency;
+use App\Models\User;
 
 class FundsController extends Controller
 {
     public function index()
     {
-        return view('protected.conversions-list');
+        $user = User::find(auth()->id());
+        $conversions = $user->conversions()->desc()->simplePaginate(25);
+
+        return view('protected.conversions-list', ['transactions' => $conversions]);
     }
 
     public function create()

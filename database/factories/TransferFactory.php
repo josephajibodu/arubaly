@@ -18,9 +18,11 @@ class TransferFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::find(1);
+
         return [
-            'transaction_id' => function () {
-                return Transaction::factory()->transfer()->create()->id;
+            'transaction_id' => function () use ($user) {
+                return Transaction::factory()->transfer()->for($user)->create()->id;
             },
             'recipient_id' => function () {
                 return User::factory()->create()->id;

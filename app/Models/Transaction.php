@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Currency;
 use App\Enums\TradeStatus;
 use App\Enums\TransactionType;
+use App\Models\Traits\CanBeOrdered;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Transaction extends Model
 {
     use HasFactory;
+
+    use CanBeOrdered;
 
     protected $casts = [
         'type' => TransactionType::class,

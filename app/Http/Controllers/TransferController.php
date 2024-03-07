@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transfer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TransferController extends Controller
@@ -12,7 +13,10 @@ class TransferController extends Controller
      */
     public function index()
     {
-        return view('protected.transfers-list');
+        $user = User::find(auth()->id());
+        $transfers = $user->transfers()->desc()->simplePaginate(25);
+
+        return view('protected.transfers-list', ['transactions' => $transfers]);
     }
 
     /**

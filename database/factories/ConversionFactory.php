@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Enums\Currency;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,9 +19,11 @@ class ConversionFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::find(1);
+
         return [
-            'transaction_id' => function () {
-                return Transaction::factory()->conversion()->create()->id;
+            'transaction_id' => function () use ($user) {
+                return Transaction::factory()->conversion()->for($user)->create()->id;
             },
             'rate' => fake()->numberBetween(100, 1000),
             'to_currency' => fake()->randomElement(Currency::values()),

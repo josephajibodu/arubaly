@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\User;
 use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,9 @@ class WithdrawalController extends Controller
      */
     public function index()
     {
-        $withdrawals = Transaction::withdrawals()->simplePaginate(25);
-        
+        $user = User::find(auth()->id());
+        $withdrawals = $user->withdrawals()->desc()->simplePaginate(25);
+
         return view('protected.withdrawals-list', ['transactions' => $withdrawals]);
     }
 
