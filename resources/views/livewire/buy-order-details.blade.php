@@ -17,7 +17,7 @@
                 </span>
                 <span class="flex items-center gap-1">
                     <img src="{{ asset('images/flags/ng.png') }}?v1" class="h-4 w-4 rounded-full"  alt="awg icon"/>
-                    ({{ $transaction->order->payable_currency->toString() }}) {{ $transaction->order->payable_amount / 100 }}
+                    ({{ $transaction->order->payable_currency->toString() }}) {{ \Illuminate\Support\Number::format($transaction->order->payable_amount / 100) }}
                 </span>
             </div>
 
@@ -113,7 +113,7 @@
             @endif
 
             <div class="p-4 border rounded">
-                @if($transaction->status == \App\Enums\TradeStatus::PENDING)
+                @if($transaction->status == \App\Enums\TradeStatus::PENDING && !$transactionExpired)
                     <p class="">After transferring the amount, upload screenshot and click on “Transferred, Notify
                         Merchant” button.</p>
                     <div class="w-full mt-4">
@@ -209,6 +209,15 @@
                         </button>
                     </div>
                 </div>
+                @elseif($transaction->status == \App\Enums\TradeStatus::PENDING && $transactionExpired)
+                    <div>
+                        <p class="animate__animated animate__shakeX text-red-500 font-bold">Payment window has elapsed. Reach out to the merchant on whatsapp</p>
+
+                        <a href="{{ route('dashboard') }}"
+                           class="mt-6 w-fit rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pribg-primary1 flex items-center gap-2">
+                            Return to Dashboard
+                        </a>
+                    </div>
                 @elseif($transaction->status == \App\Enums\TradeStatus::PAYMENT_SENT)
                     <div>
                         <p class="animate__animated animate__shakeX text-green-500 font-bold">The Merchant has been notified, your payment will be confirmed within 1hour by the

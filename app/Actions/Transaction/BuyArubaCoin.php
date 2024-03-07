@@ -8,6 +8,7 @@ use App\Enums\TransactionType;
 use App\Models\Order;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Settings\GeneralSetting;
 use Illuminate\Support\Facades\DB;
 
 class BuyArubaCoin
@@ -18,6 +19,7 @@ class BuyArubaCoin
 
         return DB::transaction(function () use ($merchant, $user, $localAmount) {
             $currency = Currency::AWG;
+            $settings = app(GeneralSetting::class);
 
             // Create a new transaction for the buy order
             $transaction = Transaction::create([
@@ -31,26 +33,15 @@ class BuyArubaCoin
             ]);
 
             // Create a new buy order associated with the transaction
-            return $transaction->order()->create([
+            $transaction->order()->create([
                 'merchant_id' => $merchant->id,
                 'rate' => $merchant->rate,
                 'payable_currency' => Currency::NGN,
-                'payment_limit' => 12, // 12 minutes
-                'payable_amount' => $localAmount * $this->getExchangeRate($currency),
+                'payment_limit' => $settings->payment_limit, // 12 minutes
+                'payable_amount' => $localAmount * ($merchant->rate / 100),
             ]);
-        });
-    }
 
-    /**
-     * Get the exchange rate (replace this with your logic to fetch the rate)
-     *
-     * @param Currency $currency
-     * @return float
-     */
-    private function getExchangeRate(Currency $currency): float
-    {
-        // Replace this with your logic to fetch the exchange rate for the given currency
-        // For simplicity, return a fixed rate here.
-        return 1.2; // Replace with actual exchange rate logic
+            return $transaction->refresh();
+        });
     }
 }

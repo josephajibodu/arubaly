@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Actions\Transaction\BuyArubaCoin;
+use App\Exceptions\InsufficientFundsException;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -22,6 +24,11 @@ class BuyAruba extends Component
         $this->merchant = $user;
     }
 
+    public function goBack()
+    {
+        $this->merchant = null;
+    }
+
     public function updated($property)
     {
         if ($property == 'amount') {
@@ -39,12 +46,34 @@ class BuyAruba extends Component
     public function mount()
     {
         // TODO: create a better way to get merchants
-        $this->merchants = User::with(['awg', 'usd', 'ngn'])->where('rate', '>', 0)->get();
+        $this->merchants = User::role('merchant')->get();
     }
 
-    public function buy()
+    public function buy(BuyArubaCoin $buyArubaCoin)
     {
+        $this->validate([
+            'amount' => 'numeric|min:1',
+        ], [
+            'amount.numeric' => 'Please input a valid amount'
+        ]);
 
+        try {
+            $transaction = $buyArubaCoin->execute(
+                user: User::find(auth()->id()),
+                merchant: $this->merchant,
+                amount: $this->amount
+            );
+
+            $this->dispatch('success', "Buy Order Created");
+
+            $this->user = User::find(auth()->id());
+
+            $this->redirectRoute('transaction.buy-awg.show',  ['order' => $transaction]);
+        } catch (InsufficientFundsException $exception) {
+            report($exception);
+
+            $this->dispatch('error', $exception);
+        }
     }
 
     public function calculate()

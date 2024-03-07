@@ -29,7 +29,7 @@ Route::group(['auth' => 'web'], function () {
 
     Route::get('/buy-aruba', [BuyArubaController::class, 'index'])->name('transaction.buy-awg');
 
-    Route::get('/buy-aruba/{order:reference}', [BuyArubaController::class, 'show'])->name('transaction.show');
+    Route::get('/buy-aruba/{order:reference}', [BuyArubaController::class, 'show'])->name('transaction.buy-awg.show');
 
     Route::get('/withdraw', [WithdrawalController::class, 'index'])->name('transaction.withdraw');
 
