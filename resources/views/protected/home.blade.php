@@ -103,7 +103,9 @@
                         </div>
                         <div class="px-4 py-8 overflow-y-auto">
                             <p class="font-bold text-primary">Kindly be aware that exchange rates may fluctuate based on currency market prices.</p>
-
+                            @php
+                                $settings = app(\App\Settings\GeneralSetting::class);
+                            @endphp
                             <div class="rounded-md mt-3 space-y-4">
                                 <div class="flex justify-between p-4 border rounded">
                                     <span class="flex items-center gap-1 font-bold">
@@ -111,7 +113,7 @@
                                         1 ARUBA(AWG)
                                     </span>
                                     <span class="flex items-center gap-1 font-bold">
-                                        ₦497
+                                        ₦{{ $settings->awg_rate }}
                                     </span>
                                 </div>
 
@@ -121,7 +123,7 @@
                                         1 USD
                                     </span>
                                     <span class="flex items-center gap-1 font-bold">
-                                        ₦1350 (Official Market Rate)
+                                        ₦{{ $settings->usd_rate_official }} (Official Market Rate)
                                     </span>
                                 </div>
 
@@ -131,14 +133,14 @@
                                         1 USD
                                     </span>
                                     <span class="flex items-center gap-1 font-bold">
-                                        ₦1410 (Parallel Market Rate)
+                                        ₦{{ $settings->usd_rate_parallel }} (Parallel Market Rate)
                                     </span>
                                 </div>
 
 
-                                <p class="mt-4">Aruba to USD exchange processing time: <span class="font-bold text-primary">up to 4 hours.</span></p>
-                                <p>USD to Naira exchange processing time (Official rate): <span class="font-bold text-primary">up to 4 hours.</span></p>
-                                <p>USD to Naira exchange processing time (Parallel rate): <span class="font-bold text-primary">up to 4 hours.</span></p>
+                                <p class="mt-4">Aruba to USD exchange processing time: <span class="font-bold text-primary">up to {{ $settings->aruba_to_usd_processing_time / 60 }} hours.</span></p>
+                                <p>USD to Naira exchange processing time (Official rate): <span class="font-bold text-primary">up to {{ $settings->usd_to_naira_processing_time_official / 60 }} hours.</span></p>
+                                <p>USD to Naira exchange processing time (Parallel rate): <span class="font-bold text-primary">up to {{ $settings->usd_to_naira_processing_time_parallel_market / 60 }} hours.</span></p>
                             </div>
 
 
