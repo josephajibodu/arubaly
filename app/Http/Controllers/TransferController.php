@@ -14,7 +14,7 @@ class TransferController extends Controller
     public function index()
     {
         $user = User::find(auth()->id());
-        $transfers = $user->transfers()->desc()->simplePaginate(25);
+        $transfers = $user->transfers()->with('transfer')->desc()->simplePaginate(25);
 
         return view('protected.transfers-list', ['transactions' => $transfers]);
     }

@@ -10,7 +10,7 @@ class FundsController extends Controller
     public function index()
     {
         $user = User::find(auth()->id());
-        $conversions = $user->conversions()->desc()->simplePaginate(25);
+        $conversions = $user->conversions()->with('conversion')->desc()->simplePaginate(25);
 
         return view('protected.conversions-list', ['transactions' => $conversions]);
     }

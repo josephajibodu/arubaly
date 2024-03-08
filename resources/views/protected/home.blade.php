@@ -32,10 +32,10 @@
                                         <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">53.42</h4>
                                     </div>
 
-                                    <div class="text-center space-y-3">
-                                        <span class="text-sm">Pending Balance<i data-feather="info" class="h-4 w-4 inline"></i></span>
-                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">0.00</h4>
-                                    </div>
+{{--                                    <div class="text-center space-y-3">--}}
+{{--                                        <span class="text-sm">Pending Balance<i data-feather="info" class="h-4 w-4 inline"></i></span>--}}
+{{--                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">0.00</h4>--}}
+{{--                                    </div>--}}
                                 </div>
 
                                 <div class="flex gap-2">
@@ -52,10 +52,10 @@
                                         <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">$999.80</h4>
                                     </div>
 
-                                    <div class="text-center space-y-3">
-                                        <span class="text-sm">Pending Balance<i data-feather="info" class="h-4 w-4 inline"></i></span>
-                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">$299.00</h4>
-                                    </div>
+{{--                                    <div class="text-center space-y-3">--}}
+{{--                                        <span class="text-sm">Pending Balance<i data-feather="info" class="h-4 w-4 inline"></i></span>--}}
+{{--                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">$299.00</h4>--}}
+{{--                                    </div>--}}
                                 </div>
 
                                 <a href="{{ route('transaction.convert', ['from' => \App\Enums\Currency::USD->value, 'to' => \App\Enums\Currency::NGN->value]) }}" type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Convert USD to Naira</a>
@@ -71,10 +71,10 @@
                                         <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">&#8358;100,000.80</h4>
                                     </div>
 
-                                    <div class="text-center space-y-3">
-                                        <span class="text-sm">Pending Balance<i data-feather="info" class="h-4 w-4 inline"></i></span>
-                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">&#8358;299.00</h4>
-                                    </div>
+{{--                                    <div class="text-center space-y-3">--}}
+{{--                                        <span class="text-sm">Pending Balance<i data-feather="info" class="h-4 w-4 inline"></i></span>--}}
+{{--                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">&#8358;299.00</h4>--}}
+{{--                                    </div>--}}
                                 </div>
 
                                 <a href="{{ route('transaction.withdrawal.create') }}" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Withdraw Funds</a>
@@ -157,12 +157,12 @@
         <div class="lg:col-span-3 space-y-6">
             <div class="card p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <p class="card-title">Your Connected Bank account details</p>
-                    <button class="btn text-white bg-primary">Edit Account Details</button>
+                    <p class="card-title text-sm lg:text-xl capitalize">Your <span class="hidden md:inline">Connected</span> Bank account details</p>
+                    <a href="{{ route('dashboard.profile') }}" class="btn text-white bg-primary">Edit <span class="hidden md:inline ms-1" >Account Details</span></a>
                 </div>
 
                 <div class="p-6">
-                    <div class="flex gap-16">
+                    <div class="flex flex-col lg:flex-row gap-16">
                         <!-- stat 1 -->
                         <div class="flex items-center gap-5">
                             <i data-feather="users" class="h-10 w-10"></i>
@@ -195,49 +195,66 @@
             </div>
         </div>
 
-        <!-- Transactions -->
-        <div class="lg:col-span-3 space-y-6">
-            <div class="card p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <p class="card-title">Recent Transactions</p>
-                </div>
+    </div>
 
-                <div class="p-6">
 
-                    <div class="overflow-x-auto">
-                        <div class="min-w-full inline-block align-middle">
-                            <div class="border rounded-lg overflow-hidden dark:border-gray-700">
-                                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Trx Ref</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                                        <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                                        <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">John Brown</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">45</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">45</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">45</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">New York No. 1 Lake Park</td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                                <a class="text-primary hover:text-sky-700" href="#">Delete</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+    {{--        Transactions--}}
+    <div class="card p-6 mt-6">
+        <div class="flex justify-between items-center mb-1">
+            <p class="card-title">Recent Transactions</p>
         </div>
 
+        <div class="overflow-x-auto">
+            <div class="min-w-full inline-block align-middle">
+                <div class="overflow-hidden">
+                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ref</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            {{-- <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Action</th> --}}
+                        </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                        @foreach($transactions as $transaction)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                                    <span class="uppercase">{{ $transaction->reference }}</span>
+                                    @if($transaction->type == \App\Enums\TransactionType::CONVERSION || $transaction->type == \App\Enums\TransactionType::ORDER)
+                                        @php
+                                            $timeLeft = $transaction->type == \App\Enums\TransactionType::CONVERSION
+                                                        ? $transaction->conversion->getTimeLeft()
+                                                        : $transaction->order->getTimeLeft();
+                                        @endphp
+                                        @if($timeLeft > 0)
+                                            <x-countdown :timeRemaining="$timeLeft" />
+                                        @else
+                                            <p class="italic font-light">{{ \Carbon\Carbon::parse($transaction->created_at)->diffForHumans() }} <br /></p>
+                                        @endif
+                                    @else
+                                        <p class="italic font-light">{{ \Carbon\Carbon::parse($transaction->created_at)->diffForHumans() }} <br /></p>
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{ $transaction->description }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{ $transaction->currency->toString() }} {{ \Illuminate\Support\Number::format($transaction->amount/100) }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                                    {{ $transaction->status }}</td>
+                                {{--                                        <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">--}}
+                                {{--                                            <a class="text-primary hover:text-sky-700" href="#">Delete</a>--}}
+                                {{--                                        </td>--}}
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
+
+
+@push('scripts')
+    @livewireScripts
+@endpush

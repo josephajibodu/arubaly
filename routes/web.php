@@ -25,6 +25,14 @@ Route::get('/', function () {
 Route::group(['auth' => 'web'], function () {
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::put('/profile/banking-details', [DashboardController::class, 'updateBankDetails'])->name('dashboard.banking-details.update');
+
+    Route::get('/merchant/profile', [DashboardController::class, 'merchantProfile'])->name('dashboard.merchant');
+
+    Route::put('/merchant/profile', [DashboardController::class, 'merchantDetailsUpdate'])->name('dashboard.merchant.update');
+
+    Route::get('/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
+
     Route::get('/convert-funds', [FundsController::class, 'create'])->name('transaction.convert');
 
     Route::get('/convert-funds/list', [FundsController::class, 'index'])->name('transaction.convert.index');

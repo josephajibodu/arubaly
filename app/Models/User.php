@@ -42,6 +42,13 @@ class User extends Authenticatable implements FilamentUser, HasName
         'bankname',
         'accountname',
         'accountnumber',
+
+        'rate',
+        'min_amount',
+        'max_amount',
+        'availability',
+        'payment_type',
+        'terms'
     ];
 
     /**
@@ -67,6 +74,17 @@ class User extends Authenticatable implements FilamentUser, HasName
 
     protected $with = ['awg', 'ngn', 'usd'];
 
+    public function avatar()
+    {
+        $address = strtolower( trim( $this->email ) );
+
+        // Create an SHA256 hash of the final string
+        $hash = hash( 'sha256', $address );
+
+        // Grab the actual image URL
+        return 'https://www.gravatar.com/avatar/' . $hash;
+    }
+
     /**
      * Relationships
      */
@@ -88,6 +106,11 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function ngn(): HasOne
     {
         return $this->hasOne(Wallet::class)->where('currency', Currency::NGN);
+    }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
     }
 
     public function withdrawals(): HasMany

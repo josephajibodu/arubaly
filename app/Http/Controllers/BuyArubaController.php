@@ -10,7 +10,7 @@ class BuyArubaController extends Controller
     public function index()
     {
         $user = User::find(auth()->id());
-        $orders = $user->orders()->desc()->simplePaginate(25);
+        $orders = $user->orders()->with('order')->desc()->simplePaginate(25);
 
         return view('protected.buy-awg-orders', ['transactions' => $orders]);
     }

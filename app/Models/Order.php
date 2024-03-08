@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Currency;
 use App\Enums\TradeStatus;
 use App\Models\Traits\CanBeOrdered;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,6 +22,15 @@ class Order extends Model
     ];
 
     protected $relations = ['merchant'];
+
+    public function getTimeLeft(string $created_at = null)
+    {
+        $created_at = $created_at ?? $this->transaction->created_at;
+
+        $endTime = Carbon::parse($created_at)->addMinutes($this->payment_limit);
+
+        return now()->diffInSeconds($endTime, false);
+    }
 
     /**
      * Relationships

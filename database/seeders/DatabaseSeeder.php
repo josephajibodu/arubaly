@@ -14,20 +14,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        $admin = User::factory()->create([
             'email' => 'josephajibodu@gmail.com',
             'username' => 'cremirdevio',
         ]);
 
         User::factory(10)->create();
         $merchants = User::factory(25)->merchant()->create();
+        $compilers = User::factory(5)->merchant()->create();
 
         $merchantRole = Role::create(['name' => 'merchant']);
         $compilerRole = Role::create(['name' => 'compiler']);
         Role::create(['name' => 'admin']);
 
+        $admin->assignRole($merchantRole);
+
         foreach ($merchants as $merchant) {
             $merchant->assignRole($merchantRole);
+        }
+
+        foreach ($compilers as $compiler) {
+            $compiler->assignRole($compilerRole);
         }
 
         $this->call([

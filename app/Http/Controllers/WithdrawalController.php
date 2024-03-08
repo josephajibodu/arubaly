@@ -15,7 +15,7 @@ class WithdrawalController extends Controller
     public function index()
     {
         $user = User::find(auth()->id());
-        $withdrawals = $user->withdrawals()->desc()->simplePaginate(25);
+        $withdrawals = $user->withdrawals()->with('withdrawal')->desc()->simplePaginate(25);
 
         return view('protected.withdrawals-list', ['transactions' => $withdrawals]);
     }

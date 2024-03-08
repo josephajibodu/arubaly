@@ -1,3 +1,7 @@
+@php
+    $user = \App\Models\User::find(auth()->id());
+@endphp
+
 <!-- Topbar Start -->
 <header class="app-header flex items-center px-4 gap-3">
     <!-- Sidenav Menu Toggle Button -->
@@ -77,7 +81,7 @@
                 class="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
             >
                 <img
-                    src="assets/images/flags/germany.jpg"
+                    src="{{ asset('images/flags/germany.jpg') }}"
                     alt="user-image"
                     class="h-4"
                 />
@@ -90,7 +94,7 @@
                 class="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
             >
                 <img
-                    src="assets/images/flags/italy.jpg"
+                    src="{{ asset('images/flags/italy.jpg') }}"
                     alt="user-image"
                     class="h-4"
                 />
@@ -103,7 +107,7 @@
                 class="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
             >
                 <img
-                    src="assets/images/flags/spain.jpg"
+                    src="{{ asset('images/flags/spain.jpg') }}"
                     alt="user-image"
                     class="h-4"
                 />
@@ -116,7 +120,7 @@
                 class="flex items-center gap-2.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
             >
                 <img
-                    src="assets/images/flags/russia.jpg"
+                    src="{{ asset('images/flags/russia.jpg') }}"
                     alt="user-image"
                     class="h-4"
                 />
@@ -316,7 +320,7 @@
             class="nav-link"
         >
             <img
-                src="{{ asset('images/users/user-6.jpg') }}"
+                src="{{ $user->avatar() }}"
                 alt="user-image"
                 class="rounded-full h-10"
             />

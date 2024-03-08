@@ -181,7 +181,7 @@
 
                 <ul class="sub-menu hidden">
                     <li class="menu-item">
-                        <a href="apps-project-list.html" class="menu-link">
+                        <a href="{{ route('dashboard.merchant') }}" class="menu-link">
                             <span class="menu-text">Account Details</span>
                         </a>
                     </li>

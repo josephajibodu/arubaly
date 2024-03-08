@@ -32,6 +32,7 @@ class TransactionFactory extends Factory
             'status' => fake()->randomElement(TradeStatus::values()),
             'currency' => fake()->randomElement(Currency::values()),
             'type' => fake()->randomElement(TransactionType::values()),
+            'created_at' => now()->subMinutes(fake()->numberBetween(5, 60))
         ];
     }
 
