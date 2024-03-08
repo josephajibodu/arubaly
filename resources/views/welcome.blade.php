@@ -46,13 +46,17 @@
 
 {{-- Rates --}}
     <div class="bg-white border border-x-0 py-6">
-        <div class="mx-auto max-w-7xl flex gap-12 justify-center">
+        @php
+            $settings = app(\App\Settings\GeneralSetting::class);
+        @endphp
+
+        <div class="mx-auto max-w-7xl flex flex-col items-center gap-12 justify-center">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                 </svg>
 
-                1 ARUBA(AWG) – <span class="font-bold">&#8358; 497</span>
+                1 ARUBA(AWG) – <span class="font-bold">&#8358; {{ $settings->awg_rate ?? 0 }}</span>
             </div>
 
             <div class="flex items-center gap-2">
@@ -60,7 +64,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                 </svg>
 
-                1 USD – <span class="font-bold">&#8358; 1350</span> (Official Market Rate)
+                1 USD – <span class="font-bold">$ {{ $settings->usd_rate_official ?? 0 }}</span> (Official Market Rate)
             </div>
 
             <div class="flex items-center gap-2">
@@ -68,7 +72,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
                 </svg>
 
-                1 USD – <span class="font-bold">&#8358; 1410</span> (Parallel Market Rate)
+                1 USD – <span class="font-bold">$ {{ $settings->usd_rate_parallel ?? 0 }}</span> (Parallel Market Rate)
             </div>
         </div>
     </div>
@@ -123,7 +127,7 @@
                         </dl>
                     </div>
                 </div>
-                <img src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
+                <img src="{{ asset('images/dashboard.png') }}" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
             </div>
         </div>
     </div>
@@ -150,22 +154,10 @@
                     </div>
                 </div>
                 <div class="relative mt-16 h-80 lg:mt-8">
-                    <img class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png" alt="App screenshot" width="1824" height="1080">
+                    <img class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="{{ asset('images/dashboard.png') }}" alt="App screenshot" width="1824" height="1080">
                 </div>
             </div>
         </div>
     </div>
 
-{{-- Footer--}}
-    <div class="bg-gray-900">
-        <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8 text-center">
-            <ul class="flex gap-6 mx-auto flex justify-center text-md text-white">
-                <li>About</li>
-                <li>Blog</li>
-                <li>Jobs</li>
-            </ul>
-
-            <span class="mt-4 block">&copy; {{ date("Y") }} arubaly.com. All rights reserved.</span>
-        </div>
-    </div>
 @endsection
