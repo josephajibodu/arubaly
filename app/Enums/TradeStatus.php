@@ -15,5 +15,29 @@ enum TradeStatus: string
     case CANCELLED = 'cancelled';
     case COMPLETED = 'completed';
 
+    public function label(): string
+    {
+        return match ($this) {
+            self::PENDING => 'Pending',
+            self::PAYMENT_SENT => 'Payment Sent',
+            self::PAYMENT_CONFIRMED => 'Payment Confirmed',
+            self::PAYMENT_UNCONFIRMED => 'Payment Unconfirmed',
+            self::CANCELLED => 'Cancelled',
+            self::COMPLETED => 'Completed',
+        };
+    }
+
+    public function color(): string
+    {
+        return match ($this) {
+            self::PENDING => 'orange',
+            self::PAYMENT_SENT => 'blue',
+            self::PAYMENT_CONFIRMED => '#485e52',
+            self::PAYMENT_UNCONFIRMED => 'gray',
+            self::CANCELLED => 'red',
+            self::COMPLETED => 'green',
+        };
+    }
+
 }
 // pending, payment_sent, payment_confirmed, cancelled, completed

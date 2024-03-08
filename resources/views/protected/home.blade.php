@@ -96,7 +96,7 @@
                             <h3 class="font-medium text-gray-800 dark:text-white text-lg">
                                 Exchange Rates
                             </h3>
-                            <button class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 dark:text-gray-200"
+                            <button class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 "
                                     data-fc-dismiss type="button">
                                 <span class="material-symbols-rounded">close</span>
                             </button>
@@ -146,7 +146,7 @@
 
                         </div>
                         <div class="flex justify-end items-center gap-4 p-4 border-t dark:border-slate-700">
-                            <button class="py-2 px-5 inline-flex justify-center items-center gap-2 rounded dark:text-gray-200 border dark:border-slate-700 font-medium hover:bg-slate-100 hover:dark:bg-slate-700 transition-all" data-fc-dismiss type="button">Close</button>
+                            <button class="py-2 px-5 inline-flex justify-center items-center gap-2 rounded  border dark:border-slate-700 font-medium hover:bg-slate-100 hover:dark:bg-slate-700 transition-all" data-fc-dismiss type="button">Close</button>
                         </div>
                     </div>
                 </div>
@@ -220,9 +220,9 @@
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                         @foreach($transactions as $transaction)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 ">
                                     <span class="uppercase">{{ $transaction->reference }}</span>
-                                    @if($transaction->type == \App\Enums\TransactionType::CONVERSION || $transaction->type == \App\Enums\TransactionType::ORDER)
+                                    @if(($transaction->type == \App\Enums\TransactionType::CONVERSION || $transaction->type == \App\Enums\TransactionType::ORDER) && $transaction->status == \App\Enums\TradeStatus::PENDING)
                                         @php
                                             $timeLeft = $transaction->type == \App\Enums\TransactionType::CONVERSION
                                                         ? $transaction->conversion->getTimeLeft()
@@ -237,10 +237,11 @@
                                         <p class="italic font-light">{{ \Carbon\Carbon::parse($transaction->created_at)->diffForHumans() }} <br /></p>
                                     @endif
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{ $transaction->description }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{ $transaction->currency->toString() }} {{ \Illuminate\Support\Number::format($transaction->amount/100) }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                                    {{ $transaction->status }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 ">{{ $transaction->description }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 ">{{ $transaction->currency->toString() }} {{ \Illuminate\Support\Number::format($transaction->amount/100) }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                    <span style="color: {{ $transaction->status->color() }}">{{ $transaction->status }}</span>
+                                </td>
                                 {{--                                        <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">--}}
                                 {{--                                            <a class="text-primary hover:text-sky-700" href="#">Delete</a>--}}
                                 {{--                                        </td>--}}

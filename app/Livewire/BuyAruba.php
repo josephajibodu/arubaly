@@ -57,6 +57,16 @@ class BuyAruba extends Component
             'amount.numeric' => 'Please input a valid amount'
         ]);
 
+        $this->calculate();
+
+        // check that the naira equivalent is within the merchants min and max
+        $compareAmount = $this->payableAmount * 100;
+
+        if ($compareAmount < $this->merchant->min_amount || $compareAmount > $this->merchant->max_amount) {
+            $this->addError('payableAmount', 'Please ensure your payable amount is withing the merchants limit');
+            return;
+        }
+
         try {
             $transaction = $buyArubaCoin->execute(
                 user: User::find(auth()->id()),
@@ -78,11 +88,15 @@ class BuyAruba extends Component
 
     public function calculate()
     {
+        $this->clearValidation();
+
         $this->payableAmount = ($this->merchant->rate * floatval($this->amount ?? 0)) / 100;
     }
 
     private function calculateInverse()
     {
+        $this->clearValidation();
+
         $this->amount = (floatval($this->payableAmount ?? 0) / $this->merchant->rate);
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Buy Orders')
+@section('title', 'Merchant Orders')
 
 @section('content')
     <div class="flex flex-col items-center py-10">
@@ -16,7 +16,7 @@
                             <thead>
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ref</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Merchant</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">User</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
@@ -38,7 +38,7 @@
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                                        {{ $transaction->order->merchant->username }}
+                                        {{ $transaction->user->username }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{ $transaction->description }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{{ $transaction->currency->toString() }} {{ \Illuminate\Support\Number::format($transaction->amount/100) }}</td>

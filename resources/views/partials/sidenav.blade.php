@@ -186,7 +186,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="apps-project-detail.html" class="menu-link">
+                        <a href="{{ route('dashboard.merchant.orders') }}" class="menu-link">
                             <span class="menu-text">Order List</span>
                         </a>
                     </li>

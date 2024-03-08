@@ -7,6 +7,10 @@
 
         Back
     </button>
+
+        <div class="bg-warning/25 text-warning  text-sm rounded-md p-4 max-w-lg mb-4 font-bold my-8" role="alert">
+            Click anywhere outside the input to compute the Naira equivalent. <br />
+        </div>
     @endif
 
     @if(!$merchant)
@@ -47,7 +51,7 @@
                             <img src="{{ asset('images/flags/awg.png') }}?v1" class="h-4 w-4 rounded-full"  alt="awg icon"/>
                         </div>
                         <input
-                            wire:model.live.debounce.500ms="amount"
+                            wire:model.live.blur="amount"
                             id="amount-to-buy"
                             type="number"
                             placeholder="0.00"
@@ -55,6 +59,9 @@
                             class="form-input ltr:rounded-l-none rtl:rounded-r-none"
                         />
                     </div>
+                    @error('amount')
+                    <p class="mt-0 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="border bg-gray-200 rounded-xl p-4 flex flex-col gap-3">
@@ -93,6 +100,9 @@
                             class="form-input ltr:rounded-l-none rtl:rounded-r-none"
                         />
                     </div>
+                    @error('payableAmount')
+                    <p class="mt-0 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn bg-primary text-white mt-2 flex gap-1 items-center" wire:loading.class="opacity-50" wire:loading.attr="disabled">

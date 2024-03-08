@@ -34,7 +34,7 @@
 
                             <div>
                                 <label for="rate" class="text-gray-800 text-sm font-medium inline-block mb-2 ">Aruba Selling Price</label>
-                                <input type="number" name="rate" class="form-input w-fit" id="rate" value="{{ old('rate') ?? $user->rate }}">
+                                <input type="number" name="rate" class="form-input w-fit" id="rate" value="{{ old('rate') ?? $user->rate / 100 }}">
 
                                 @error('rate')
                                     <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
@@ -59,7 +59,7 @@
 
                             <div>
                                 <label for="min_amount" class="text-gray-800 text-sm font-medium inline-block mb-2 ">Min Amount</label>
-                                <input type="number" name="min_amount" class="form-input w-fit" id="min_amount" value="{{ old('min_amount') ?? $user->min_amount }}">
+                                <input type="number" name="min_amount" class="form-input w-fit" id="min_amount" value="{{ old('min_amount') ?? $user->min_amount / 100 }}">
 
                                 @error('min_amount')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
@@ -68,7 +68,7 @@
 
                             <div>
                                 <label for="max_amount" class="text-gray-800 text-sm font-medium inline-block mb-2 ">Max Amount</label>
-                                <input type="number" name="max_amount" class="form-input w-fit" id="max_amount" value="{{ old('max_amount') ?? $user->max_amount }}">
+                                <input type="number" name="max_amount" class="form-input w-fit" id="max_amount" value="{{ old('max_amount') ?? $user->max_amount / 100 }}">
 
                                 @error('max_amount')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
