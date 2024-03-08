@@ -43,41 +43,4 @@ class DashboardController extends Controller
 
         return redirect()->back();
     }
-
-    public function merchantProfile()
-    {
-        $user = auth()->user();
-
-        return view('protected.merchants.index', ['user' => $user]);
-    }
-
-    public function merchantDetailsUpdate(Request $request)
-    {
-        $user = auth()->user();
-
-        $input = $request->validate([
-            'rate' => ['required', 'numeric', 'min:1'],
-            'min_amount' => ['required', 'string', 'min:1'],
-            'max_amount' => ['required', 'string', 'min:1'],
-            'payment_type' => ['required', 'string', 'max:255'],
-            'availability' => ['nullable'],
-            'terms' => ['nullable', 'string', 'max:500'],
-        ]);
-
-        $user = User::find(auth()->id());
-
-        $user->update([
-            'rate' => $input['rate'] * 100,
-            'min_amount' => $input['min_amount'] * 100,
-            'max_amount' => $input['max_amount'] * 100,
-            'payment_type' => $input['payment_type'],
-            'availability' => isset($input['availability']) && $input['availability'] ? MerchantAvailability::AVAILABLE : MerchantAvailability::SOLDOUT,
-            'terms' => $input['terms'],
-        ]);
-
-        session()->flash('success', 'Trading details updated successfully');
-
-        return redirect()->back();
-    }
-
 }

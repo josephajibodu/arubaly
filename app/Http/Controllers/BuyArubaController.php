@@ -26,12 +26,4 @@ class BuyArubaController extends Controller
             'order' => $order,
         ]);
     }
-
-    public function merchantOrders()
-    {
-        $user = User::find(auth()->id());
-        $orders = $user->orders()->with('order')->desc()->simplePaginate(25);
-
-        return view('protected.merchants.orders', ['transactions' => $orders]);
-    }
 }

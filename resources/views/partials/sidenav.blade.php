@@ -1,6 +1,6 @@
 <div class="app-menu overflow-auto">
     <!-- Sidenav Brand Logo -->
-    <a href="index.html" class="logo-box">
+    <a href="{{ url('/') }}" class="logo-box">
         <!-- Light Brand Logo -->
         <div class="logo-light">
             <img

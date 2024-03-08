@@ -27,10 +27,10 @@
                     with the potential for substantial profits.
                 </p>
                 <div class="mt-10 flex items-center justify-center gap-x-6">
-                    <a href="#"
-                       class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get
+                    <a href="{{ route('register') }}"
+                       class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get
                         started</a>
-                    <a href="#" class="text-sm font-semibold leading-6 text-primary">Learn more <span
+                    <a href="{{ route('register') }}" class="text-sm font-semibold leading-6 text-primary">Learn more <span
                             aria-hidden="true">→</span></a>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                     <p class="mt-6 text-lg leading-8 text-gray-800">Register now to embark on a journey of seamless transactions and lucrative profits!</p>
                     <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                         <a href="{{ route('register') }}" class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Get started</a>
-                        <a href="#" class="text-sm font-semibold leading-6 text-primary">Learn more <span aria-hidden="true">→</span></a>
+                        <a href="{{ route('register') }}" class="text-sm font-semibold leading-6 text-primary">Learn more <span aria-hidden="true">→</span></a>
                     </div>
                 </div>
                 <div class="relative mt-16 h-80 lg:mt-8">

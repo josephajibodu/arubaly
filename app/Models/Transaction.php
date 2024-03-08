@@ -85,4 +85,19 @@ class Transaction extends Model
     {
         $query->where('type', TransactionType::CONVERSION);
     }
+
+    /**
+     * Scope a query to only include buy orders for a merchant.
+     *
+     * @param Builder $query
+     * @param int $merchantId
+     * @return Builder
+     */
+    public function scopeMerchantOrders(Builder $query, int $merchantId): Builder
+    {
+        return $query->where('type', TransactionType::ORDER)
+            ->whereHas('order', function (Builder $subQuery) use ($merchantId) {
+                $subQuery->where('merchant_id', $merchantId);
+            });
+    }
 }

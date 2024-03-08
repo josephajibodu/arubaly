@@ -24,6 +24,6 @@ class TransactionSeeder extends Seeder
 
         Conversion::factory(20)->create();
 
-//        Order::factory(20)->create();
+        Order::factory(20)->create();
     }
 }

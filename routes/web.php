@@ -3,6 +3,7 @@
 use App\Http\Controllers\BuyArubaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FundsController;
+use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\WithdrawalController;
 use Illuminate\Support\Facades\Route;
@@ -30,11 +31,11 @@ Route::group(['auth' => 'web'], function () {
     Route::get('/profile', [DashboardController::class, 'profile'])->name('dashboard.profile');
 
 
-    Route::get('/merchant/profile', [DashboardController::class, 'merchantProfile'])->name('dashboard.merchant');
+    Route::get('/merchant/profile', [MerchantController::class, 'edit'])->name('dashboard.merchant');
 
-    Route::put('/merchant/profile', [DashboardController::class, 'merchantDetailsUpdate'])->name('dashboard.merchant.update');
+    Route::put('/merchant/profile', [MerchantController::class, 'update'])->name('dashboard.merchant.update');
 
-    Route::get('/merchant/orders', [BuyArubaController::class, 'merchantOrders'])->name('dashboard.merchant.orders');
+    Route::get('/merchant/orders', [MerchantController::class, 'index'])->name('dashboard.merchant.orders');
 
 
 
