@@ -4,9 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Enums\Currency;
 use App\Enums\TradeStatus;
-use App\Filament\Resources\TransferResource\Pages;
-use App\Filament\Resources\TransferResource\RelationManagers;
-use App\Models\Transfer;
+use App\Filament\Resources\ConversionResource\Pages;
+use App\Filament\Resources\ConversionResource\RelationManagers;
+use App\Models\Conversion;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\Section;
@@ -18,11 +18,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class TransferResource extends Resource
+class ConversionResource extends Resource
 {
-    protected static ?string $model = Transfer::class;
+    protected static ?string $model = Conversion::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-arrows-right-left';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function getEloquentQuery(): Builder
     {
@@ -51,7 +51,7 @@ class TransferResource extends Resource
 
                         TextEntry::make('transaction.amount')
                             ->label('Amount')
-                            ->money(fn(Transfer $record) => match ($record->transaction->currency) {
+                            ->money(fn(Conversion $record) => match ($record->transaction->currency) {
                                 Currency::AWG => 'AWG',
                                 Currency::USD => 'USD',
                                 Currency::NGN => 'NGN',
@@ -64,26 +64,46 @@ class TransferResource extends Resource
 
                 Section::make('More Details')
                     ->schema([
-                        TextEntry::make('transaction.user.username')
-                            ->label('From'),
+                        TextEntry::make('transaction.amount')
+                            ->label('Convert')
+                            ->money(fn(Conversion $record) => match ($record->transaction->currency) {
+                                Currency::AWG => 'AWG',
+                                Currency::USD => 'USD',
+                                Currency::NGN => 'NGN',
+                            }, 100),
 
-                        TextEntry::make('recipient.username')
-                            ->label('To'),
+                        TextEntry::make('to_amount')
+                            ->label('To')
+                            ->money(fn(Conversion $record) => match ($record->to_currency) {
+                                Currency::AWG => 'AWG',
+                                Currency::USD => 'USD',
+                                Currency::NGN => 'NGN',
+                            }, 100),
+
+                        TextEntry::make('exchange_fee')
+                            ->money(fn(Conversion $record) => match ($record->to_currency) {
+                                Currency::AWG => 'AWG',
+                                Currency::USD => 'USD',
+                                Currency::NGN => 'NGN',
+                            }, 100),
+
+                        TextEntry::make('received_amount')
+                            ->money(fn(Conversion $record) => match ($record->to_currency) {
+                                Currency::AWG => 'AWG',
+                                Currency::USD => 'USD',
+                                Currency::NGN => 'NGN',
+                            }, 100),
+
+                        TextEntry::make('rate')
+                            ->money(fn(Conversion $record) => match ($record->to_currency) {
+                                Currency::AWG => 'AWG',
+                                Currency::USD => 'USD',
+                                Currency::NGN => 'NGN',
+                            }, 100),
+
+                        TextEntry::make('created_at')
+                            ->since()
                     ])->columns(2),
-            ]);
-    }
-
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Forms\Components\Select::make('transaction_id')
-                    ->relationship('transaction', 'id')
-                    ->required(),
-
-                Forms\Components\Select::make('recipient_id')
-                    ->relationship('recipient', 'id')
-                    ->required(),
             ]);
     }
 
@@ -95,17 +115,18 @@ class TransferResource extends Resource
 
                 Tables\Columns\TextColumn::make('transaction.amount')
                     ->label('Amount')
-                    ->money(fn(Transfer $record) => match ($record->transaction->currency) {
+                    ->money(fn(Conversion $record) => match ($record->transaction->currency) {
                         Currency::AWG => 'AWG',
                         Currency::USD => 'USD',
                         Currency::NGN => 'NGN',
                     }, 100),
 
-                Tables\Columns\TextColumn::make('transaction.user.username')
-                    ->label('From'),
-
-                Tables\Columns\TextColumn::make('recipient.username')
-                    ->label('To'),
+                Tables\Columns\TextColumn::make('received_amount')
+                    ->money(fn(Conversion $record) => match ($record->to_currency) {
+                        Currency::AWG => 'AWG',
+                        Currency::USD => 'USD',
+                        Currency::NGN => 'NGN',
+                    }, 100),
 
                 Tables\Columns\TextColumn::make('transaction.status')
                     ->label('Status')
@@ -121,14 +142,13 @@ class TransferResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: false)
-                    ->since(),
+                    ->since()
+                    ->toggleable(isToggledHiddenByDefault: false),
 
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-
             ])
             ->filters([
                 //
@@ -153,9 +173,9 @@ class TransferResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTransfers::route('/'),
-            'create' => Pages\CreateTransfer::route('/create'),
-//            'edit' => Pages\EditTransfer::route('/{record}/edit'),
+            'index' => Pages\ListConversions::route('/'),
+            'create' => Pages\CreateConversion::route('/create'),
+//            'edit' => Pages\EditConversion::route('/{record}/edit'),
         ];
     }
 }
