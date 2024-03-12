@@ -60,7 +60,7 @@
                     class="menu-link"
                 >
                 <span class="menu-icon"
-                ><i class="mgc_building_2_line"></i
+                ><i class="mgc_bank_line"></i
                     ></span>
                     <span class="menu-text"> Withdraw </span>
                     <span class="menu-arrow"></span>
@@ -87,7 +87,7 @@
                     class="menu-link"
                 >
                 <span class="menu-icon"
-                ><i class="mgc_building_2_line"></i
+                ><i class="mgc_pig_money_line"></i
                     ></span>
                     <span class="menu-text"> Transfer </span>
                     <span class="menu-arrow"></span>
@@ -114,7 +114,7 @@
                     class="menu-link"
                 >
                 <span class="menu-icon"
-                ><i class="mgc_building_2_line"></i
+                ><i class="mgc_copper_coin_line"></i
                     ></span>
                     <span class="menu-text"> Buy Aruba </span>
                     <span class="menu-arrow"></span>
@@ -141,7 +141,7 @@
                     class="menu-link"
                 >
                 <span class="menu-icon"
-                ><i class="mgc_building_2_line"></i
+                ><i class="mgc_counter_line"></i
                     ></span>
                     <span class="menu-text"> Convert </span>
                     <span class="menu-arrow"></span>
@@ -173,7 +173,7 @@
                     class="menu-link"
                 >
                 <span class="menu-icon"
-                ><i class="mgc_building_2_line"></i
+                ><i class="mgc_user_1_line"></i
                     ></span>
                     <span class="menu-text"> Merchant </span>
                     <span class="menu-arrow"></span>
