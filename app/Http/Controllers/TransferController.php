@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use App\Models\Transfer;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,6 +16,16 @@ class TransferController extends Controller
     {
         $user = User::find(auth()->id());
         $transfers = $user->transfers()->with('transfer')->desc()->simplePaginate(25);
+        $transfers = Transaction::transfers()
+            ->with('transfer')
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhereHas('transfer', function ($subQuery) {
+                        $subQuery->where('recipient_id', auth()->id());
+                    });
+            })
+            ->desc()
+            ->simplePaginate(25);
 
         return view('protected.transfers-list', ['transactions' => $transfers]);
     }

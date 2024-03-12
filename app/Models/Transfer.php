@@ -19,4 +19,9 @@ class Transfer extends Model
     {
         return $this->belongsTo(Transaction::class);
     }
+
+    public function recipient(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'recipient_id');
+    }
 }
