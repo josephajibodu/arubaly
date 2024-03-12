@@ -63,7 +63,7 @@ Route::group(['auth' => 'web'], function () {
 
     Route::get('/transfers', [TransferController::class, 'index'])->name('transaction.transfer.index');
 
-    Route::get('/transfer-funds', [TransferController::class, 'index'])->name('transaction.transfer.create');
+    Route::get('/transfer-funds', [TransferController::class, 'create'])->name('transaction.transfer.create');
 
 });
 
