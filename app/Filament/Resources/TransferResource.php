@@ -2,34 +2,32 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\Currency;
 use App\Enums\TradeStatus;
-use App\Filament\Resources\WithdrawalResource\Pages;
-use App\Filament\Resources\WithdrawalResource\RelationManagers;
+use App\Filament\Resources\TransferResource\Pages;
+use App\Filament\Resources\TransferResource\RelationManagers;
 use App\Models\Transfer;
-use App\Models\Withdrawal;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
-use Filament\Support\Enums\ActionSize;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class WithdrawalResource extends Resource
+class TransferResource extends Resource
 {
-    protected static ?string $model = Withdrawal::class;
+    protected static ?string $model = Transfer::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
+    protected static ?string $navigationIcon = 'heroicon-o-arrows-right-left';
 
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->orderByDesc('created_at');
     }
-
 
     public static function infolist(Infolist $infolist): Infolist
     {
@@ -39,6 +37,7 @@ class WithdrawalResource extends Resource
                     ->schema([
                         TextEntry::make('transaction.reference')
                             ->label('Reference'),
+
                         TextEntry::make('transaction.status')
                             ->label('Status')
                             ->badge()
@@ -49,21 +48,42 @@ class WithdrawalResource extends Resource
                                 TradeStatus::PAYMENT_UNCONFIRMED => 'warning',
                                 TradeStatus::CANCELLED => 'danger',
                             }),
+
                         TextEntry::make('transaction.amount')
                             ->label('Amount')
-                            ->money('NGN', 100),
+                            ->money(fn(Transfer $record) => match ($record->transaction->currency) {
+                                Currency::AWG => 'AWG',
+                                Currency::USD => 'USD',
+                                Currency::NGN => 'NGN',
+                            }, 100),
+
                         TextEntry::make('transaction.description')
                             ->label('Description'),
+
                     ])->columns(2),
-                Section::make('Payment Details')
+
+                Section::make('More Details')
                     ->schema([
-                        TextEntry::make('bankname'),
-                        TextEntry::make('accountname'),
-                        TextEntry::make('accountnumber')
-                            ->copyable()
-                            ->copyMessage('Copied!')
-                            ->copyMessageDuration(1500),
+                        TextEntry::make('transaction.user.username')
+                            ->label('From'),
+
+                        TextEntry::make('recipient.username')
+                            ->label('To'),
                     ])->columns(2),
+            ]);
+    }
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Forms\Components\Select::make('transaction_id')
+                    ->relationship('transaction', 'id')
+                    ->required(),
+
+                Forms\Components\Select::make('recipient_id')
+                    ->relationship('recipient', 'id')
+                    ->required(),
             ]);
     }
 
@@ -72,13 +92,20 @@ class WithdrawalResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('transaction.reference'),
-                Tables\Columns\TextColumn::make('transaction.user.username')
-                    ->label('Username'),
-                Tables\Columns\TextColumn::make('transaction.description')
-                    ->label('Description'),
                 Tables\Columns\TextColumn::make('transaction.amount')
                     ->label('Amount')
-                    ->money('NGN', 100),
+                    ->money(fn(Transfer $record) => match ($record->transaction->currency) {
+                        Currency::AWG => 'AWG',
+                        Currency::USD => 'USD',
+                        Currency::NGN => 'NGN',
+                    }, 100),
+
+                Tables\Columns\TextColumn::make('transaction.user.username')
+                    ->label('From'),
+
+                Tables\Columns\TextColumn::make('recipient.username')
+                    ->label('To'),
+
                 Tables\Columns\TextColumn::make('transaction.status')
                     ->label('Status')
                     ->badge()
@@ -89,28 +116,24 @@ class WithdrawalResource extends Resource
                         TradeStatus::PAYMENT_UNCONFIRMED => 'warning',
                         TradeStatus::CANCELLED => 'danger',
                     }),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->toggleable(isToggledHiddenByDefault: false)
+                    ->since(),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
+            ])
+            ->filters([
+                //
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\Action::make('approveWithdrawal')
-                    ->label('Settle')
-                    ->button()
-                    ->color('success')
-                    ->size(ActionSize::ExtraSmall)
-                    ->requiresConfirmation()
-                    ->modalHeading('Settle Withdrawal')
-                    ->modalDescription('Doing this means the funds has been transferred to the users account.')
-                    ->modalSubmitActionLabel('Yes. Settle Withdrawal')
-                    ->visible(fn (Withdrawal $record) => $record->transaction->status == TradeStatus::PENDING)
-                    ->action(fn (Withdrawal $record) => $record->transaction->update(['status' => TradeStatus::COMPLETED])),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -129,9 +152,9 @@ class WithdrawalResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListWithdrawals::route('/'),
-            'create' => Pages\CreateWithdrawal::route('/create'),
-//            'edit' => Pages\EditWithdrawal::route('/{record}/edit'),
+            'index' => Pages\ListTransfers::route('/'),
+            'create' => Pages\CreateTransfer::route('/create'),
+//            'edit' => Pages\EditTransfer::route('/{record}/edit'),
         ];
     }
 }
