@@ -30,6 +30,7 @@ class WithdrawalResource extends Resource
         return parent::getEloquentQuery()->orderByDesc('created_at');
     }
 
+
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
@@ -96,9 +97,6 @@ class WithdrawalResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
