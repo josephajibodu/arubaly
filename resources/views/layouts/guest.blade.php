@@ -29,7 +29,7 @@
 
             <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                    <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
                         <img src="{{ asset('images/logo-dark.png') }}" class="h-8" alt="Flowbite Logo" />
                     </a>
                     <button data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-dropdown" aria-expanded="false">
@@ -43,6 +43,14 @@
                             <li>
                                 <a href="{{ url('/') }}" class="block py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0" aria-current="page">Home</a>
                             </li>
+                            <li>
+                                <a href="{{ route('become-a-merchant') }}" class="block py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0" aria-current="page">Become a Merchant</a>
+                            </li>
+                            @auth()
+                                <li>
+                                    <a href="{{ route('dashboard') }}" class="block py-2 px-3 font-bold text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0" aria-current="page">Dashboard</a>
+                                </li>
+                            @endauth
 {{--                            <li>--}}
 {{--                                <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-primary md:p-0">Services</a>--}}
 {{--                            </li>--}}
@@ -68,15 +76,15 @@
 
         {{-- Footer--}}
         <footer>
-            <div class="bg-gray-900">
+            <div class="bg-primary">
                 <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8 text-center">
                     <ul class="flex gap-6 mx-auto flex justify-center text-md text-white">
-                        <li>Terms of Service</li>
-                        <li>Privacy Policy</li>
-                        <li>Become a Merchant</li>
+                        <li><a href="{{ route('terms-and-conditions') }}">Terms of Service</a></li>
+                        <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('become-a-merchant') }}">Become a Merchant</a></li>
                     </ul>
 
-                    <span class="mt-4 block">&copy; {{ date("Y") }} arubaly.com. All rights reserved.</span>
+                    <span class="mt-4 block text-gray-200">&copy; {{ date("Y") }} arubaly.com. All rights reserved.</span>
                 </div>
             </div>
         </footer>

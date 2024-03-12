@@ -66,3 +66,9 @@ Route::group(['auth' => 'web'], function () {
     Route::get('/transfer-funds', [TransferController::class, 'index'])->name('transaction.transfer.create');
 
 });
+
+Route::view('privacy-policy', 'policy')->name('privacy-policy');
+
+Route::view('terms-and-conditions', 'terms')->name('terms-and-conditions');
+
+Route::view('become-a-merchant', 'become_a_merchant')->name('become-a-merchant');
