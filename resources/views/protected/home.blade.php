@@ -29,7 +29,7 @@
                                 <div class="flex items-center justify-center gap-16">
                                     <div class="text-center space-y-3">
                                         <span class="text-sm">Available Balance <i data-feather="info" class="h-4 w-4 inline"></i></span>
-                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">53.42</h4>
+                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">{{ \Illuminate\Support\Number::format($user->awg->balance / 100) }}</h4>
                                     </div>
 
 {{--                                    <div class="text-center space-y-3">--}}
@@ -49,7 +49,7 @@
                                 <div class="flex items-center justify-center gap-16">
                                     <div class="text-center space-y-3">
                                         <span class="text-sm">Available Balance <i data-feather="info" class="h-4 w-4 inline"></i></span>
-                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">$999.80</h4>
+                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">${{ \Illuminate\Support\Number::format($user->usd->balance / 100) }}</h4>
                                     </div>
 
 {{--                                    <div class="text-center space-y-3">--}}
@@ -68,7 +68,7 @@
                                 <div class="flex items-center justify-center gap-16">
                                     <div class="text-center space-y-3">
                                         <span class="text-sm">Available Balance <i data-feather="info" class="h-4 w-4 inline"></i></span>
-                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">&#8358;100,000.80</h4>
+                                        <h4 class="text-4xl text-gray-700 dark:text-gray-300 font-bold">&#8358;{{ \Illuminate\Support\Number::format($user->ngn->balance / 100) }}</h4>
                                     </div>
 
 {{--                                    <div class="text-center space-y-3">--}}

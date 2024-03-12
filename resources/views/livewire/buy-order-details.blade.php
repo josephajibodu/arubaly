@@ -24,6 +24,24 @@
             <div class="p-4 border rounded">
                 <div class="flex flex-col">
                     <span class="flex items-center gap-1 font-bold">
+                    Merchant
+                    </span>
+                    <p class="mt-2">
+                        {{ $transaction->order->merchant->username }}
+                    </p>
+                </div>
+
+                <div class="flex flex-col mt-4">
+                    <span class="flex items-center gap-1 font-bold">
+                    Merchant Whatsapp
+                    </span>
+                    <p class="mt-2">
+                        {{ $transaction->order->merchant->whatsappnumber }}
+                    </p>
+                </div>
+
+                <div class="flex flex-col mt-4">
+                    <span class="flex items-center gap-1 font-bold">
                     Merchant Terms
                     </span>
                     <p class="mt-2">
@@ -53,7 +71,7 @@
                     <span class="flex items-center gap-1 font-bold">
                     Order Status
                     </span>
-                    <p class="mt-2">
+                    <p class="mt-2 w-fit bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-gray-500">
                         {{ \Illuminate\Support\Str::title($transaction->status->value) }}
                     </p>
                 </div>
@@ -64,7 +82,15 @@
                     Payment Time Limit
                     </span>
                     <p class="mt-2">
-                        {{ $transaction->order->payment_limit }} minutes (countdown here)
+                        {{ $transaction->order->payment_limit }} minutes
+
+                        @php
+                            $timeLeft = $transaction->order->getTimeLeft();
+                        @endphp
+
+                        @if ($timeLeft > 0)
+                            <x-countdown :timeRemaining="$timeLeft" />
+                        @endif
                     </p>
                 </div>
                 @endif
@@ -229,9 +255,17 @@
                             Return to Dashboard
                         </a>
                     </div>
+                @elseif($transaction->status == \App\Enums\TradeStatus::PAYMENT_UNCONFIRMED)
+                    <div>
+                        <p class="mt-4">PAYMENT not RECEIVED. <a href="http://api.whatsapp.com/+234{{ $transaction->order->merchant->whatsappnumber }}" class="underline text-primary font-bold">Contact Merchant</a></p>
+                        <a href="{{ route('dashboard') }}"
+                           class="mt-6 w-fit rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pribg-primary1 flex items-center gap-2">
+                            Return to Dashboard
+                        </a>
+                    </div>
                 @elseif($transaction->status == \App\Enums\TradeStatus::CANCELLED)
                     <div>
-                        <p class="animate__animated animate__shakeX text-red-500">You have cancelled the buy order, please click the below link to return to dashboard.</p>
+                        <p class="animate__animated animate__shakeX text-red-500">Order cancelled, please click the below link to return to dashboard.</p>
                         <a href="{{ route('dashboard') }}"
                                 class="mt-6 w-fit rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pribg-primary1 flex items-center gap-2">
                             Back to Dashboard

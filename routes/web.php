@@ -37,6 +37,8 @@ Route::group(['auth' => 'web'], function () {
 
     Route::get('/merchant/orders', [MerchantController::class, 'index'])->name('dashboard.merchant.orders');
 
+    Route::get('/merchant/orders/{order:reference}', [MerchantController::class, 'view'])->name('dashboard.merchant.orders.view');
+
 
 
     Route::get('/convert-funds', [FundsController::class, 'create'])->name('transaction.convert');

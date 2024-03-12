@@ -25,6 +25,16 @@ class MerchantController extends Controller
         return view('protected.merchants.index', ['user' => $user]);
     }
 
+    public function view(Transaction $order)
+    {
+        $user = auth()->user();
+
+        return view('protected.merchants.order-details', [
+            'user' => $user,
+            'reference' => $order->reference
+        ]);
+    }
+
     public function update(Request $request)
     {
         $user = auth()->user();

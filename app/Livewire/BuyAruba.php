@@ -21,6 +21,8 @@ class BuyAruba extends Component
     public function selectMerchant(int $userId)
     {
         $user = User::with(['awg', 'usd', 'ngn'])->find($userId);
+        if ($userId == auth()->id()) return;
+
         $this->merchant = $user;
     }
 

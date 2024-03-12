@@ -39,6 +39,10 @@ class BuyOrderDetails extends Component
             'payment_proof.image' => 'Please upload a valid payment proof',
         ]);
 
+        if ($this->transactionExpired = $this->isExpired()) {
+            return;
+        }
+
         $path = $this->payment_proof->store(path: 'payment_proof');
 
         // upload the file path and status to payment paid

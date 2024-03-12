@@ -18,7 +18,7 @@
        @foreach($merchants as $merchant)
             <!-- Merchant Cards -->
             <!-- Repeat this card structure for each merchant -->
-            <div class="card px-4 py-4 ">
+            <div class="card px-4 py-4 {{ $merchant->id == auth()->id() ? 'opacity-20' : '' }}">
                 <h2 class="text-xl font-semibold mb-2 text-primary">Merchant ({{ $merchant->username }})</h2>
                 <p class="mb-2">Selling Price: <b>{{ Illuminate\Support\Number::currency($merchant->rate / 100, 'NGN') }}</b></p>
                 <p class="mb-2">Available Aruba (AWG): <b>{{ Illuminate\Support\Number::format($merchant->awg->balance / 100) }}</b></p>
@@ -27,7 +27,7 @@
                 <p class="mb-2">Payment: <b>{{ $merchant->payment_type }}</b></p>
 
 
-                <button wire:click="selectMerchant({{ $merchant->id }})" @if($merchant->availability == \App\Enums\MerchantAvailability::SOLDOUT) disabled @endif class="btn bg-primary text-white disabled:opacity-20">BUY ARUBA(AWG)</button>
+                <button wire:click="selectMerchant({{ $merchant->id }})" @if($merchant->availability == \App\Enums\MerchantAvailability::SOLDOUT || $merchant->id == auth()->id()) disabled @endif class="btn bg-primary text-white disabled:opacity-20">BUY ARUBA(AWG)</button>
 
             </div>
             <!-- End Merchant Cards -->
@@ -65,6 +65,13 @@
                 </div>
 
                 <div class="border bg-gray-200 rounded-xl p-4 flex flex-col gap-3">
+                    <div class="flex justify-between">
+                        <span class="flex items-center gap-1">
+                            Merchant
+                        </span>
+                        <span class="text-gray-900">{{ $merchant->username }}</span>
+                    </div>
+
                     <div class="flex justify-between">
                         <span class="flex items-center gap-1">
                             Merchant rate
