@@ -27,8 +27,11 @@
                 <p class="mb-2">Payment: <b>{{ $merchant->payment_type }}</b></p>
 
 
-                <button wire:click="selectMerchant({{ $merchant->id }})" @if($merchant->availability == \App\Enums\MerchantAvailability::SOLDOUT || $merchant->id == auth()->id()) disabled @endif class="btn bg-primary text-white disabled:opacity-20">BUY ARUBA(AWG)</button>
-
+                @auth()
+                    <button wire:click="selectMerchant({{ $merchant->id }})" @if($merchant->availability == \App\Enums\MerchantAvailability::SOLDOUT || $merchant->id == auth()->id()) disabled @endif class="btn bg-primary text-white disabled:opacity-20">BUY ARUBA(AWG)</button>
+                @else
+                    <a href="{{ route('login') }}" class="btn bg-primary text-white disabled:opacity-20">BUY ARUBA(AWG)</a>
+                @endauth
             </div>
             <!-- End Merchant Cards -->
         @endforeach

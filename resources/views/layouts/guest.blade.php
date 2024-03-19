@@ -49,7 +49,13 @@
                                 <a href="{{ url('/') }}" class="block py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0" aria-current="page">Home</a>
                             </li>
                             <li>
+                                <a href="{{ route('buy-aruba') }}" class="block py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0" aria-current="page">Buy Aruba</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('become-a-merchant') }}" class="block py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0" aria-current="page">Become a Merchant</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq') }}" class="block py-2 px-3 text-white bg-primary rounded md:bg-transparent md:text-primary md:p-0" aria-current="page">FAQ</a>
                             </li>
                             @auth()
                                 <li>
@@ -84,6 +90,7 @@
             <div class="bg-primary">
                 <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8 text-center">
                     <ul class="flex gap-6 mx-auto flex justify-center text-md text-white">
+                        <li><a href="{{ route('faq') }}">FAQs</a></li>
                         <li><a href="{{ route('terms-and-conditions') }}">Terms of Service</a></li>
                         <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                         <li><a href="{{ route('become-a-merchant') }}">Become a Merchant</a></li>
