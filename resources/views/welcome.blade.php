@@ -74,6 +74,7 @@
             </div>
         </div>
     </div>
+
 {{-- Features/How-to section--}}
     <div class="overflow-hidden bg-white py-24 sm:py-32">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -83,7 +84,7 @@
                         <h2 class="text-base font-semibold leading-7 text-primary">Profitable Trangular Exchange</h2>
                         <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">How it works</p>
                         <p class="mt-6 text-lg leading-8 text-gray-600">
-                            Arubaly source for limited amount of Aruba Florin (AWG) and distribute it to merchants, users can buy Aruba Florin (AWG) from merchants when available. users can then convert Aruba to USD and USD to Naira at their dashboard. Users can make withdrawals in Naira or USD. 
+                            Arubaly source for limited amount of Aruba Florin (AWG) and distribute it to merchants, users can buy Aruba Florin (AWG) from merchants when available. users can then convert Aruba to USD and USD to Naira at their dashboard. Users can make withdrawals in Naira or USD.
                         </p>
                         <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                             <div class="relative pl-9">
@@ -115,21 +116,29 @@
                                     Scarcity:
                                 </dt>
                                 <dd class="inline">
-                                    Note that Aruba Florin daily availability is limited due to scarcity, to buy Aruba (AWG) make sure you check the buy page from 6:00AM (Every Morning). 
+                                    Note that Aruba Florin daily availability is limited due to scarcity, to buy Aruba (AWG) make sure you check the buy page from 6:00AM (Every Morning).
                                 </dd>
                             </div>
                         </dl>
                     </div>
                 </div>
-                <img src="{{ asset('images/wumg.jpg') }}" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
+                <img src="{{ asset('images/wumg.jpg') }}" alt="Product screenshot" class="object-cover w-[32rem] lg:w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-primary/90 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
             </div>
+        </div>
+    </div>
+
+{{-- FAQ--}}
+    <div class="px-6 py-12 bg-primary/20 flex flex-col justify-center items-center">
+        <h3 class="text-xl lg:text-3xl mb-8 text-primary max-w-7xl text-center italic font-light">Explore our comprehensive FAQ page for answers to common questions and valuable insights. Click here to discover more!</h3>
+        <div class="mt-3 flex items-center justify-center gap-x-6 lg:justify-start">
+            <a href="{{ route('faq') }}" class="text-base font-semibold leading-6 text-primary">Learn more <span aria-hidden="true">→</span></a>
         </div>
     </div>
 
 {{-- CTA section--}}
     <div class="bg-white">
-        <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
-            <div class="relative isolate overflow-hidden bg-white border-2 border-primary px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+        <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 px-4 lg:px-8">
+            <div class="relative isolate overflow-hidden bg-white border-2 border-primary px-6 pt-16 shadow-2xl rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
                 <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
                     <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />
                     <defs>
@@ -140,13 +149,16 @@
                     </defs>
                 </svg>
                 <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+
                     <h2 class="text-3xl font-bold tracking-tight text-primary sm:text-4xl">🚀 Fair Trade</h2>
                     <p class="mt-6 text-lg leading-8 text-gray-800">To ensure fair trade, you cannot register more than one account in your name.</p>
                     <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+
                         <a href="{{ route('register') }}" class="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Get started</a>
                         <a href="{{ route('register') }}" class="text-sm font-semibold leading-6 text-primary">Learn more <span aria-hidden="true">→</span></a>
                     </div>
                 </div>
+
                 <div class="relative mt-16 h-80 lg:mt-8">
                     <img class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="{{ asset('images/wumg.jpg') }}" alt="App screenshot" width="1824" height="1080">
                 </div>

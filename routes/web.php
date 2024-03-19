@@ -23,6 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('landing');
 
+Route::get('/buy-aruba', [BuyArubaController::class, 'createPublic'])->name('buy-aruba');
+
 Route::group(['auth' => 'web'], function () {
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -46,8 +48,7 @@ Route::group(['auth' => 'web'], function () {
     Route::get('/convert-funds/list', [FundsController::class, 'index'])->name('transaction.convert.index');
 
 
-
-    Route::get('/buy-aruba', [BuyArubaController::class, 'create'])->name('transaction.buy-awg.create');
+    Route::get('/buy-aruba/create', [BuyArubaController::class, 'create'])->name('transaction.buy-awg.create');
 
     Route::get('/buy-aruba/orders', [BuyArubaController::class, 'index'])->name('transaction.buy-awg.index');
 
@@ -72,3 +73,5 @@ Route::view('privacy-policy', 'policy')->name('privacy-policy');
 Route::view('terms-and-conditions', 'terms')->name('terms-and-conditions');
 
 Route::view('become-a-merchant', 'become_a_merchant')->name('become-a-merchant');
+
+Route::view('frequently-asked-questions', 'faq')->name('faq');

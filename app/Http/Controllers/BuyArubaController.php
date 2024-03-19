@@ -20,6 +20,11 @@ class BuyArubaController extends Controller
         return view('protected.buy-awg');
     }
 
+    public function createPublic()
+    {
+        return view('buy-aruba');
+    }
+
     public function show(Transaction $order)
     {
         return view('protected.transactions.order', [
