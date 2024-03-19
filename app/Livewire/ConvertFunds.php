@@ -95,7 +95,7 @@ class ConvertFunds extends Component
         } catch (InsufficientFundsException $exception) {
             report($exception);
 
-            $this->dispatch('error', $exception);
+            $this->dispatch('error', 'Your balance is insufficient.');
         }
     }
 
