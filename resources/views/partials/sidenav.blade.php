@@ -51,7 +51,7 @@
                 </a>
             </li>
 
-            <li class="menu-title">Apps</li>
+            <li class="menu-title">Menu</li>
 
             <li class="menu-item">
                 <a
