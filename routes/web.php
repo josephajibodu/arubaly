@@ -25,7 +25,7 @@ Route::get('/', function () {
 
 Route::get('/buy-aruba', [BuyArubaController::class, 'createPublic'])->name('buy-aruba');
 
-Route::group(['auth' => 'web'], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::put('/profile/banking-details', [DashboardController::class, 'updateBankDetails'])->name('dashboard.banking-details.update');
