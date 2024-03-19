@@ -1,0 +1,55 @@
+{
+  "__commonjsHelpers-Cpj98o6Y.js": {
+    "file": "assets/_commonjsHelpers-Cpj98o6Y.js"
+  },
+  "resources/css/app.scss": {
+    "file": "assets/app-Bs5BEePf.css",
+    "src": "resources/css/app.scss",
+    "isEntry": true
+  },
+  "resources/css/icons.scss": {
+    "file": "assets/icons-BNXiBzWl.css",
+    "src": "resources/css/icons.scss",
+    "isEntry": true
+  },
+  "resources/fonts/MingCute.eot": {
+    "file": "assets/MingCute-Bng9lLJg.eot",
+    "src": "resources/fonts/MingCute.eot"
+  },
+  "resources/fonts/MingCute.svg": {
+    "file": "assets/MingCute-DF9_oc27.svg",
+    "src": "resources/fonts/MingCute.svg"
+  },
+  "resources/fonts/MingCute.ttf": {
+    "file": "assets/MingCute-Cj0eC7Bx.ttf",
+    "src": "resources/fonts/MingCute.ttf"
+  },
+  "resources/fonts/MingCute.woff": {
+    "file": "assets/MingCute-BUSpgl5C.woff",
+    "src": "resources/fonts/MingCute.woff"
+  },
+  "resources/js/alerts.js": {
+    "file": "assets/alerts-otfxMPaY.js",
+    "src": "resources/js/alerts.js",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers-Cpj98o6Y.js"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-B8JQySZq.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "__commonjsHelpers-Cpj98o6Y.js"
+    ],
+    "css": [
+      "assets/app-B-gXXBrj.css"
+    ]
+  },
+  "resources/js/config.js": {
+    "file": "assets/config-Drh_hgEE.js",
+    "src": "resources/js/config.js",
+    "isEntry": true
+  }
+}
