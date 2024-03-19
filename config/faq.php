@@ -4,188 +4,51 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
+    [
+        'question' => 'What is the meaning of triangular arbitrage?',
+        'answer' => [
+            'Triangular arbitrage is the act of exploiting an arbitrage opportunity resulting from a pricing
+            discrepancy among three different currencies in the foreign exchange market.',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Application Name
-    |--------------------------------------------------------------------------
-    |
-    | This value is the name of your application. This value is used when the
-    | framework needs to place the application's name in a notification or
-    | any other location as required by the application or its packages.
-    |
-    */
+            'Arubaly sources a limited amount of Aruba Florin (AWG) and distributes it to merchants, members
+            Aruba Florin (AWG) from merchants when available. members can then convert Aruba to
+            USD to Naira at their dashboard. Users can make withdrawals in Naira or USD.',
 
-    'name' => env('APP_NAME', 'Laravel'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Environment
-    |--------------------------------------------------------------------------
-    |
-    | This value determines the "environment" your application is currently
-    | running in. This may determine how you prefer to configure various
-    | services the application utilizes. Set this in your ".env" file.
-    |
-    */
-
-    'env' => env('APP_ENV', 'production'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Debug Mode
-    |--------------------------------------------------------------------------
-    |
-    | When your application is in debug mode, detailed error messages with
-    | stack traces will be shown on every error that occurs within your
-    | application. If disabled, a simple generic error page is shown.
-    |
-    */
-
-    'debug' => (bool) env('APP_DEBUG', false),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application URL
-    |--------------------------------------------------------------------------
-    |
-    | This URL is used by the console to properly generate URLs when using
-    | the Artisan command line tool. You should set this to the root of
-    | your application so that it is used when running Artisan tasks.
-    |
-    */
-
-    'url' => env('APP_URL', 'http://localhost'),
-
-    'asset_url' => env('ASSET_URL'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Timezone
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify the default timezone for your application, which
-    | will be used by the PHP date and date-time functions. We have gone
-    | ahead and set this to a sensible default for you out of the box.
-    |
-    */
-
-    'timezone' => 'UTC',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Locale Configuration
-    |--------------------------------------------------------------------------
-    |
-    | The application locale determines the default locale that will be used
-    | by the translation service provider. You are free to set this value
-    | to any of the locales which will be supported by the application.
-    |
-    */
-
-    'locale' => 'en',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Fallback Locale
-    |--------------------------------------------------------------------------
-    |
-    | The fallback locale determines the locale to use when the current one
-    | is not available. You may change the value to correspond to any of
-    | the language folders that are provided through your application.
-    |
-    */
-
-    'fallback_locale' => 'en',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Faker Locale
-    |--------------------------------------------------------------------------
-    |
-    | This locale will be used by the Faker PHP library when generating fake
-    | data for your database seeds. For example, this will be used to get
-    | localized telephone numbers, street address information and more.
-    |
-    */
-
-    'faker_locale' => 'en_US',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Encryption Key
-    |--------------------------------------------------------------------------
-    |
-    | This key is used by the Illuminate encrypter service and should be set
-    | to a random, 32 character string, otherwise these encrypted strings
-    | will not be safe. Please do this before deploying an application!
-    |
-    */
-
-    'key' => env('APP_KEY'),
-
-    'cipher' => 'AES-256-CBC',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Maintenance Mode Driver
-    |--------------------------------------------------------------------------
-    |
-    | These configuration options determine the driver used to determine and
-    | manage Laravel's "maintenance mode" status. The "cache" driver will
-    | allow maintenance mode to be controlled across multiple machines.
-    |
-    | Supported drivers: "file", "cache"
-    |
-    */
-
-    'maintenance' => [
-        'driver' => 'file',
-        // 'store' => 'redis',
+            '<b>For example:</b> if you buy 100 Aruba (AWG) for ₦62,000 at a rate of ₦620 per Aruba (AWG),
+            Convert the 100 Aruba (AWG) to USD, you will receive $56. Then convert the $56 to Naira at a rate of ₦1560,
+            resulting in ₦87,360 in total. That is a ₦25,360 profit on this above triangular exchange.'
+        ]
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Autoloaded Service Providers
-    |--------------------------------------------------------------------------
-    |
-    | The service providers listed here will be automatically loaded on the
-    | request to your application. Feel free to add your own services to
-    | this array to grant expanded functionality to your applications.
-    |
-    */
-
-    'providers' => ServiceProvider::defaultProviders()->merge([
-        /*
-         * Package Service Providers...
-         */
-        App\Providers\FortifyServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,
-
-        /*
-         * Application Service Providers...
-         */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\Filament\AdminPanelProvider::class,
-        App\Providers\RouteServiceProvider::class,
-    ])->toArray(),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Class Aliases
-    |--------------------------------------------------------------------------
-    |
-    | This array of class aliases will be registered when this application
-    | is started. However, feel free to register as many as you wish as
-    | the aliases are "lazy" loaded so they don't hinder performance.
-    |
-    */
-
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
-    ])->toArray(),
-
+    [
+        'question' => 'How do I buy Aruba (AWG)?',
+        'answer' => 'To purchase Aruba (AWG), please sign in to your account, then select "Buy Aruba (AWG)" and proceed by clicking "Buy Now". Follow the on-screen instructions as prompted.'
+    ],
+    [
+        'question' => 'How do I convert Aruba (AWG) to USD?',
+        'answer' => 'To convert Aruba (AWG) to USD, Goto your account dashboard, click on “Convert AWG to USD” and follow the instructions.'
+    ],
+    [
+        'question' => 'How do I convert USD to Naira?',
+        'answer' => 'To Convert USD to Naira, Goto your account dashboard, click on “Convert to Naira” and follow the instructions.'
+    ],
+    [
+        'question' => 'How do I withdraw?',
+        'answer' => 'Goto your account dashboard and click on “Withdraw”, cross-check your bank account details and insert the amount you would like to withdraw and proceed.'
+    ],
+    [
+        'question' => 'How long does withdrawal take?',
+        'answer' => 'Withdrawal processing time: Withdrawals are processed within 24 hours or before the end of 24hours.'
+    ],
+    [
+        'question' => 'How do I edit my bank details after registration?',
+        'answer' => 'Login into your account and go to your account dashboard to edit your bank details. You can always edit any incorrect information at your dashboard.'
+    ],
+    [
+        'question' => 'I tried to buy Aruba (AWG) but all merchants are sold out, What should I do?',
+        'answer' => 'Aruba (AWG) is limited, and it can be scarce, if all merchants are sold out, always check back the next day from 6:00AM. Always check the “Buy Aruba page” for any availability.'
+    ],
+    [
+        'question' => 'Is triangular arbitrage risky?',
+        'answer' => 'Triangular arbitrage is a risk-free exchange, profit are made from price discrepancy in three different currencies.'
+    ]
 ];
