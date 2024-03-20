@@ -13,6 +13,11 @@ class ManageSettings extends SettingsPage
 
     protected static string $settings = GeneralSetting::class;
 
+    public static function canAccess(): bool
+    {
+        return auth()->user()->hasRole('admin');
+    }
+
     public function form(Form $form): Form
     {
         return $form
