@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         if (! $admin = User::where('email', 'josephajibodu@gmail.com')->first()) {
-
             $admin = User::factory()->merchant()->create([
                 'email' => 'josephajibodu@gmail.com',
                 'username' => 'cremirdevio',
@@ -26,11 +25,11 @@ class DatabaseSeeder extends Seeder
 //        $merchants = User::factory(25)->merchant()->create();
 //        $compilers = User::factory(5)->merchant()->create();
 //
-        $merchantRole = Role::firstOrCreate(['name' => 'merchant']);
-        $compilerRole = Role::firstOrCreate(['name' => 'compiler']);
+        Role::firstOrCreate(['name' => 'merchant']);
+        Role::firstOrCreate(['name' => 'compiler']);
         Role::firstOrCreate(['name' => 'admin']);
 //
-        $admin->assignRole($merchantRole);
+        $admin->assignRole('admin', 'merchant');
 //
 //        foreach ($merchants as $merchant) {
 //            $merchant->assignRole($merchantRole);
