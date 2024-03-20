@@ -9,6 +9,7 @@ use App\Enums\MerchantAvailability;
 use App\Enums\TransactionType;
 use App\Models\Traits\WalletActions;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
 use Filament\Models\Contracts\HasName;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements FilamentUser, HasName
+class User extends Authenticatable implements FilamentUser, HasName, HasAvatar
 {
     use HasApiTokens, HasFactory, Notifiable;
     use WalletActions;
@@ -144,5 +145,10 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function getFilamentName(): string
     {
         return "$this->first_name $this->last_name";
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->avatar();
     }
 }
