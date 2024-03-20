@@ -166,6 +166,7 @@
                 </ul>
             </li>
 
+            @if(auth()->user()->hasRole('merchant'))
             <li class="menu-item">
                 <a
                     href="javascript:void(0)"
@@ -192,7 +193,7 @@
                     </li>
                 </ul>
             </li>
-
+            @endif
         </ul>
 
         <!-- Help Box Widget -->
