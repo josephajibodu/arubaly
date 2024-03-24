@@ -37,7 +37,7 @@ return [
     ],
     [
         'question' => 'How long does withdrawal take?',
-        'answer' => 'Withdrawal processing time: Withdrawals are processed within 24 hours or before the end of 24hours.'
+        'answer' => 'Withdrawal processing time: Withdrawals are processed within 48 hours or before the end of 48hours.'
     ],
     [
         'question' => 'How do I edit my bank details after registration?',
