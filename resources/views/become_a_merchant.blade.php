@@ -21,7 +21,7 @@
                                 <div class="mx-auto text-center">
                                     <div class="max-w-xl lg:max-w-lg">
                                         <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Become a merchant today</h2>
-                                        <p class="mt-4 text-lg leading-8 text-gray-300">Feel free to call or send a WhatsApp message to 0803xxxxx for further assistance.</p>
+                                        <p class="mt-4 text-lg leading-8 text-gray-300">Feel free to call or send a WhatsApp message to +2349124163140 for further assistance.</p>
                                     </div>
                                 </div>
                             </div>

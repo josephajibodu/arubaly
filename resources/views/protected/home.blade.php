@@ -117,7 +117,7 @@
                                         1 ARUBA(AWG)
                                     </span>
                                     <span class="flex items-center gap-1 font-bold">
-                                        ₦{{ $settings->awg_rate }}
+                                        ${{ $settings->awg_rate }}
                                     </span>
                                 </div>
 

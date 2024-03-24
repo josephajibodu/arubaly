@@ -43,14 +43,14 @@
                 <span class="flex items-center gap-1">
                     Official
                 </span>
-                <span class="font-bold text-gray-900 text-base">${{ \Illuminate\Support\Number::format($settings->usd_rate_official) }}</span>
+                <span class="font-bold text-gray-900 text-base">₦{{ \Illuminate\Support\Number::format($settings->usd_rate_official) }}</span>
             </div>
 
             <div wire:click="setParallel('{{ true }}')" class="cursor-pointer flex justify-between p-4 @if($isParallel) border-4 border-primary bg-primary/30 @else border @endif rounded w-full">
                 <span class="flex items-center gap-1">
                     Parallel
                 </span>
-                <span class="font-bold text-gray-900 text-base">${{ \Illuminate\Support\Number::format($settings->usd_rate_parallel) }}</span>
+                <span class="font-bold text-gray-900 text-base">₦{{ \Illuminate\Support\Number::format($settings->usd_rate_parallel) }}</span>
             </div>
         </div>
         @endif
@@ -100,7 +100,7 @@
                         <span class="flex items-center gap-1">
                             Today's rate
                         </span>
-                <span class="text-gray-900">x {{ $rate }}</span>
+                <span class="text-gray-900">  {{ $rate }}</span>
             </div>
         </div>
 
