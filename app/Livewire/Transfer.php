@@ -44,7 +44,7 @@ class Transfer extends Component
     public function transfer(InitiateTransfer $initiateTransfer)
     {
         $this->validate([
-            'amount' => 'numeric|min:100',
+            'amount' => 'numeric|min:10',
         ], [
             'amount.min' => 'Amount to transfer must be at least 100',
             'amount.numeric' => 'Please enter a valid amount',
