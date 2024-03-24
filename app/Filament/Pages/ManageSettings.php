@@ -24,6 +24,10 @@ class ManageSettings extends SettingsPage
             ->schema([
                 Forms\Components\TextInput::make('site_name'),
 
+                Forms\Components\TextInput::make('whatsapp_group_link')
+                    ->placeholder('https://api.whatsapp.com/+234...')
+                    ->helperText('A proper link starting with https://'),
+
                 Forms\Components\TextInput::make('awg_rate')
                     ->numeric()
                     ->suffix('NGN'),

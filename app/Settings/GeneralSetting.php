@@ -24,6 +24,8 @@ class GeneralSetting extends Settings
 
     public int $usd_to_naira_processing_time_parallel_market;
 
+    public string $whatsapp_group_link;
+
     public static function group(): string
     {
         return 'general';
