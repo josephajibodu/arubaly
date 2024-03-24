@@ -60,6 +60,15 @@
                     </p>
                 </div>
 
+                <div class="flex flex-col mt-4">
+                    <span class="flex items-center gap-1 font-bold">
+                        Buyer Full Name
+                    </span>
+                    <p class="mt-2">
+                        {{ $transaction->user->firstname }} {{ $transaction->user->lastname }}
+                    </p>
+                </div>
+
                 @if ($transaction->status == \App\Enums\TradeStatus::PENDING)
                     <div class="flex flex-col mt-4">
                         <span class="flex items-center gap-1 font-bold">
