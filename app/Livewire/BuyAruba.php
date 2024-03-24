@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Actions\Transaction\BuyArubaCoin;
+use App\Enums\Currency;
 use App\Exceptions\InsufficientFundsException;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -60,6 +61,11 @@ class BuyAruba extends Component
         ]);
 
         $this->calculate();
+
+        if (! $this->merchant->hasSufficientBalance($this->amount * 100, Currency::AWG)) {
+            $this->addError('amount', 'The merchant does not currently have sufficient amount of Aruba(AWG) at the moment, Buy from other available merchant or check back later');
+            return;
+        }
 
         // check that the naira equivalent is within the merchants min and max
         $compareAmount = $this->payableAmount * 100;

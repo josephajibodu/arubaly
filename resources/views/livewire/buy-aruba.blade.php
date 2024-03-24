@@ -91,6 +91,15 @@
                         </span>
                     </div>
 
+                    <div class="flex justify-between">
+                        <span class="flex items-center gap-1">
+                            Available Aruba (AWG):
+                        </span>
+                        <span class="text-gray-900">
+                            AWG <b>{{ Illuminate\Support\Number::format($merchant->awg->balance / 100) }}</b>
+                        </span>
+                    </div>
+
                 </div>
 
                 <div class="flex flex-col gap-2">
