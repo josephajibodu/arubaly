@@ -13,6 +13,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\Actions;
 use Filament\Infolists\Components\Actions\Action;
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
@@ -104,10 +105,14 @@ class OrderResource extends Resource
                             ->since()
                     ])->columns(2),
 
-//                Section::make('Actions')
-//                    ->schema([
-//
-//                    ])
+                Section::make('Payment Proof')
+                    ->visible(fn(Order $record) => !!$record->payment_proof)
+                    ->collapsed()
+                    ->schema([
+                        ImageEntry::make('payment_proof')
+                            ->height(600)
+                    ]),
+
                 Actions::make([
                     Action::make('cancelOrder')
                         ->icon('heroicon-m-x-mark')
