@@ -69,12 +69,12 @@
                 <ul class="sub-menu hidden">
                     <li class="menu-item">
                         <a href="{{ route('transaction.withdrawal.index') }}" class="menu-link">
-                            <span class="menu-text">Withdrawals</span>
+                            <span class="menu-text">Withdrawal History</span>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('transaction.withdrawal.create') }}" class="menu-link">
-                            <span class="menu-text">Withdraw funds</span>
+                            <span class="menu-text">Withdraw</span>
                         </a>
                     </li>
                 </ul>
@@ -183,12 +183,12 @@
                 <ul class="sub-menu hidden">
                     <li class="menu-item">
                         <a href="{{ route('dashboard.merchant') }}" class="menu-link">
-                            <span class="menu-text">Account Details</span>
+                            <span class="menu-text">Merchant Settings</span>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('dashboard.merchant.orders') }}" class="menu-link">
-                            <span class="menu-text">Order List</span>
+                            <span class="menu-text">Buy Orders</span>
                         </a>
                     </li>
                 </ul>

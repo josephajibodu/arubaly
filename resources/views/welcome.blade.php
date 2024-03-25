@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-@section('title', 'Welcome to Arubaly.com')
+@section('title', 'Traingular Arbitrage In Nigeria')
 
 @section('content')
 {{--    Hero section --}}
@@ -95,7 +95,7 @@
                                     For example:
                                 </dt>
                                 <dd class="inline">
-                                    if you buy 100 Aruba (AWG) for ₦49,700 at a rate of ₦497 per Aruba (AWG), Convert the 100 Aruba (AWG) to USD, you will receive $56. Then convert the $56 to Naira at a rate of ₦1350, resulting in ₦75,600 in total. That is a ₦25,900 profit on this above triangular exchange.
+                                    if you buy 100 Aruba (AWG) for ₦57,000 at a rate of ₦570 per Aruba (AWG), Convert the 100 Aruba (AWG) to USD, you will receive $56. Then convert the $56 to Naira at a rate of ₦1450, resulting in ₦81,200 in total. That is a ₦24,200 profit on this above triangular exchange.
                                 </dd>
                             </div>
                             <div class="relative pl-9">

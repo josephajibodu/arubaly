@@ -14,9 +14,9 @@ return [
             Aruba Florin (AWG) from merchants when available. members can then convert Aruba to
             USD to Naira at their dashboard. Users can make withdrawals in Naira or USD.',
 
-            '<b>For example:</b> if you buy 100 Aruba (AWG) for ₦62,000 at a rate of ₦620 per Aruba (AWG),
-            Convert the 100 Aruba (AWG) to USD, you will receive $56. Then convert the $56 to Naira at a rate of ₦1560,
-            resulting in ₦87,360 in total. That is a ₦25,360 profit on this above triangular exchange.'
+            '<b>For example:</b> if you buy 100 Aruba (AWG) for ₦57,000 at a rate of ₦570 per Aruba (AWG),
+            Convert the 100 Aruba (AWG) to USD, you will receive $56. Then convert the $56 to Naira at a rate of ₦1450,
+            resulting in ₦81,200 in total. That is a ₦24,200 profit on this above triangular exchange.'
         ]
     ],
     [

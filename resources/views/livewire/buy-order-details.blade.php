@@ -237,7 +237,7 @@
                 </div>
                 @elseif($transaction->status == \App\Enums\TradeStatus::PENDING && $transactionExpired)
                     <div>
-                        <p class="animate__animated animate__shakeX text-red-500 font-bold">Payment window has elapsed. Reach out to the merchant on WhatsApp</p>
+                        <p class="animate__animated animate__shakeX text-red-500 font-bold">Payment window has elapsed. Reach out to the merchant on WhatsApp or If you have any issue or need help, contact the admin on +2349124163140 on WhatsApp only.</p>
 
                         <a href="{{ route('dashboard') }}"
                            class="mt-6 w-fit rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pribg-primary1 flex items-center gap-2">
@@ -247,7 +247,7 @@
                 @elseif($transaction->status == \App\Enums\TradeStatus::PAYMENT_SENT)
                     <div>
                         <p class="animate__animated animate__shakeX text-green-500 font-bold">The Merchant has been notified, your payment will be confirmed within 1hour by the
-                            merchant and your ARUBA(AWG) will be credited into your Arubaly balance.</p>
+                            merchant and your ARUBA(AWG) will be credited into your Arubaly balance. If you have any issue with a merchant, contact the administartor on +2349124163140 on WhatsApp only for resolution.</p>
 
                         <p class="mt-4">Check your <a href="orders" class="underline text-primary font-bold">ORDER LIST</a> to view your transaction status.</p>
                         <a href="{{ route('dashboard') }}"

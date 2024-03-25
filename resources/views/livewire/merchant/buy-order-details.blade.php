@@ -92,7 +92,7 @@
             @if ($transaction->status == \App\Enums\TradeStatus::PENDING && !$transactionExpired)
                 <div class="p-4 border rounded">
                     <p>Once the user makes payment and uploads the proof, it will appear here.
-                        You can then proceed to confirm the payment.
+                        You can then proceed to confirm the payment when you recieve the credit alert, do not confirm payment without confirming credit alert.
                     </p>
                 </div>
             @endif
@@ -104,7 +104,7 @@
                     </p>
 
                     <p>
-                        If you eventually received the payment, you can approve it directly here.
+                        If you eventually received the payment, you can approve it directly here. If you have any issue or need help, contact the admin on +2349124163140 on WhatsApp only.
                     </p>
 
                     <p>If you still haven't received the payment. Click on payment not received.</p>
@@ -138,7 +138,7 @@
             @if ($transaction->status == \App\Enums\TradeStatus::PAYMENT_SENT)
                 <div class="p-4 border rounded">
                     <p>
-                        User has uploaded payment proof. Confirm and approve the trade.
+                        User has uploaded payment proof.Check for credit alert before completing the trade.
                     </p>
 
                     <div class="my-2 rounded flex flex-col gap-4">
@@ -178,7 +178,7 @@
             @if ($transaction->status == \App\Enums\TradeStatus::PAYMENT_UNCONFIRMED)
                 <div class="p-4 border rounded">
                     <p>
-                        If you eventually received the payment, you can approve it directly here.
+                        If you eventually received the payment, you can approve it directly here. If you have any issue or need help, contact the admin on +2349124163140 on WhatsApp only.
                     </p>
 
                     <div class="flex justify-between">
