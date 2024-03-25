@@ -117,6 +117,10 @@ class UserResource extends Resource
                         ->action(function (User $record, array $data) {
                             foreach ($data as $key => $value) {
                                 if ($value) {
+                                    if ($key == 'merchant') {
+                                        $record->availability = MerchantAvailability::AVAILABLE;
+                                        $record->save();
+                                    }
                                     $record->assignRole($key);
                                 } else {
                                     $record->removeRole($key);
