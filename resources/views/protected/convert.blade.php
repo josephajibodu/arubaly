@@ -10,7 +10,7 @@
         </div>
 
         <div class="bg-warning/25 text-warning  text-sm rounded-md p-4 max-w-lg mb-4 font-bold" role="alert">
-            Kindly be aware that the conversion process requires a duration of 4 hours, and the
+            Kindly be aware that the conversion process requires a duration of 3 hours, and the
             exchange fee will be deducted upon completion. Feel free to monitor your dashboard
             for real-time updates on the remaining time.
         </div>

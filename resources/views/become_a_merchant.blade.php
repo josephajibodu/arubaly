@@ -13,7 +13,7 @@
                             Begin earning a 4% return by assisting individuals in obtaining Aruba Florin,
                             surpassing traditional retail or transaction-based businesses. Getting started is
                             simple—all you require is a bank account and active internet data. Reach out to
-                            support@arubaly.com today to commence the process.
+                            contact@arubaly.com today to commence the process.
                         </p>
 
                         <div class="relative rounded-xl overflow-hidden bg-primary py-16 sm:py-24 lg:py-32 flex">

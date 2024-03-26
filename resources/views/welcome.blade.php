@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">The Best Traingular Arbitrage Platform In Nigeria!</h1>
+                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">The Best Triangular Arbitrage Platform In Nigeria!</h1>
                 <p class="mt-6 text-lg leading-8 text-gray-600">
                     Arubaly.com is a triangular exchange platform that allows you to buy Aruba Florin (AWG) and exchange it to USD easily, you can also convert the exchanged USD to Naira within a few hours for reasonable profit.
                 </p>
