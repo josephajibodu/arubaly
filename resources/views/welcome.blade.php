@@ -31,6 +31,9 @@
                     <a href="{{ route('register') }}" class="text-sm font-semibold leading-6 text-primary">Learn more <span
                             aria-hidden="true">→</span></a>
                 </div>
+               <div class="pt-4">
+                   @include('partials.whatsapp')
+               </div>
             </div>
         </div>
         <div
@@ -138,6 +141,21 @@
 {{-- CTA section--}}
     <div class="bg-white">
         <div class="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 px-4 lg:px-8">
+            <div class="pb-4 text-center">
+                @php
+                    $settings = app(\App\Settings\GeneralSetting::class);
+                @endphp
+
+                @if(str($settings->whatsapp_group_link)->startsWith('https://'))
+                    <a target="_blank" href="{{ $settings->whatsapp_group_link }}" class="my-3 text-primary underline inline-flex text-lg">
+                        <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.213 9.787a3.391 3.391 0 0 0-4.795 0l-3.425 3.426a3.39 3.39 0 0 0 4.795 4.794l.321-.304m-.321-4.49a3.39 3.39 0 0 0 4.795 0l3.424-3.426a3.39 3.39 0 0 0-4.794-4.795l-1.028.961"/>
+                        </svg>
+                        Join Our WhatsApp Group
+                    </a>
+                @endif
+
+            </div>
             <div class="relative isolate overflow-hidden bg-white border-2 border-primary px-6 pt-16 shadow-2xl rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
                 <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
                     <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fill-opacity="0.7" />

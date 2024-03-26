@@ -15,6 +15,8 @@
             <p class="mb-4">- Select any of the available merchants below, click on Buy Aruba (AWG).</p>
             <p class="mb-4">- Insert the desired amount you want to buy and follow the payment instructions.</p>
             <p class="mb-4">- Click on the Appeal button if you encounter any issues with your order.</p>
+
+            @include('partials.whatsapp')
         </div>
 
         @livewire('buy-aruba')
